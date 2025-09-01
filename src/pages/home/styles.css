@@ -1,0 +1,170 @@
+.hero-header {
+  align-items: center;
+}
+
+/* #region SEÇÃO PRINCIPAL */
+.first-section {
+  gap: 60px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 40px;
+
+  height: 80vh;
+  background-color: var(--blue-light);
+}
+
+.hero-section-container {
+  gap: 40px;
+  flex-direction: row;
+}
+
+.hero-section {
+  gap: 50px;
+}
+
+.hero-text-content {
+  flex: 0;
+  gap: 10px;
+}
+
+.hero-title-group {
+  line-height: 1.2;
+}
+
+.hero-title {
+  font-size: 50px;
+  font-weight: bold;
+  color: var(--blue-dark);
+}
+
+.hero-title--gradient {
+  background: linear-gradient(135deg, #2D86D8, #21948C, #199E5C);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-title-flex {
+  gap: 10px;
+  flex-direction: row;
+}
+
+.hero-subtitle {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--blue-extra-light);
+}
+
+/**** Benefícios ****/
+.hero-benefits {
+  flex: 0;
+  gap: 20px;
+  flex-direction: row;
+}
+
+.hero-benefit-item {
+  gap: 10px;
+  align-items: center;
+
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.hero-benefit-text {
+  flex-direction: column;
+}
+
+.hero-benefit-title {
+  font-weight: 600;
+  color: var(--blue-dark);
+  font-size: 18px;
+}
+
+.hero-benefit-description {
+  font-size: 14px;
+  color: var(--blue-extra-light);
+}
+
+/**** Botões ****/
+.hero-buttons {
+  flex: 0;
+  gap: 20px;
+  flex-direction: row;
+}
+
+.hero-btn {
+  font-size: 16px;
+  font-family: 'Poppins';
+  font-weight: 600;
+
+  padding: 15px 30px;
+  border: none;
+  border-radius: 15px;
+}
+
+.btn--primary {
+  width: 250px;
+
+  color: #fff;
+  background: linear-gradient(135deg, #2D86D8, #21948C, #199E5C);
+}
+
+.btn--secondary {
+  width: 200px;
+
+  color: var(--blue-dark);
+  background-color: transparent;
+  border: 1px solid var(--blue-dark);
+}
+
+.btn--secondary:hover {
+  background-color: var(--blue-light);
+}
+
+/**** Imagem ****/
+.hero-image {
+  /* align-self: center; */
+  margin-top: 20px;
+  background-image: url("../../../assets/images/home_image.svg");
+  background-repeat: no-repeat;
+}
+/* #endregion */
+
+/* #region SEÇÃO SEGUNDÁRIA */
+.second-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 40px;
+  background-color: var(--white);
+}
+
+.second-section-content {
+  gap: 10px;
+  align-items: center;
+}
+
+.second-section-title {
+  font-weight: 600;
+  font-size: 40px;
+  color: var(--blue-dark);
+}
+
+.second-section-text-group {
+  align-items: center;
+}
+
+.second-section-text-group span {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--blue-extra-light);
+}
+
+.second-section-service-card-content {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+/* #endregion */

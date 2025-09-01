@@ -1,0 +1,87 @@
+/* #region Header */
+.header {
+  display: flex;
+  position: sticky;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1280px;
+
+  padding: 20px 40px;
+  background-color: var(--white);
+  z-index: 100;
+}
+/* #endregion */
+
+/* #region Logo */
+.header-logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-logo-icon {
+  flex: 0;
+  padding: 10px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #2D86D8, #21948C, #199E5C);
+}
+
+.header-logo-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #2D86D8;
+}
+/* #endregion */
+
+/* #region Navegação */
+.header-nav {
+  flex: 1;
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+}
+
+.header-link {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  text-decoration: none;
+  color: black;
+  transition: color 0.3s ease;
+}
+
+.header-link:hover {
+  text-decoration: none;
+  font-weight: bold;
+  color: var(--blue-dark);
+}
+/* #endregion */
+
+/* #region Botão de CTA */
+.header-cta {
+  display: flex;
+  align-items: flex-end;
+}
+
+.btn {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+}
+
+.btn--gradient {
+  background: linear-gradient(135deg, #2D86D8, #21948C, #199E5C);
+  color: #fff;
+  transition: opacity 0.3s ease;
+}
+
+.btn--gradient:hover {
+  opacity: 0.9;
+}
+/* #endregion */
