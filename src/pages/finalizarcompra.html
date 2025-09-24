@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finalizar Compra - Vision Care</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/umd/lucide.js" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <style>
+    :root {
+      --primary: 217 91% 60%;
+      --primary-foreground: 0 0% 98%;
+      --secondary: 160 84% 39%;
+      --secondary-foreground: 0 0% 98%;
+      --muted: 210 40% 96%;
+      --muted-foreground: 215 16% 47%;
+      --accent: 210 40% 96%;
+      --accent-foreground: 222 84% 5%;
+      --destructive: 0 84% 60%;
+      --destructive-foreground: 210 40% 98%;
+      --border: 214 32% 91%;
+      --input: 214 32% 91%;
+      --ring: 221 83% 53%;
+      --background: 0 0% 100%;
+      --foreground: 222 84% 5%;
+      --card: 0 0% 100%;
+      --card-foreground: 222 84% 5%;
+      --popover: 0 0% 100%;
+      --popover-foreground: 222 84% 5%;
+      --gradient-hero: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
+      --gradient-card: linear-gradient(180deg, hsl(var(--background)), hsl(var(--muted)));
+      --gradient-accent: linear-gradient(135deg, hsl(var(--secondary)), hsl(var(--primary)));
+    }
+
+    .dark {
+      --primary: 217 91% 60%;
+      --primary-foreground: 222 84% 5%;
+      --secondary: 160 84% 39%;
+      --secondary-foreground: 210 40% 98%;
+      --muted: 217 33% 17%;
+      --muted-foreground: 215 20% 65%;
+      --accent: 217 33% 17%;
+      --accent-foreground: 210 40% 98%;
+      --destructive: 0 62% 30%;
+      --destructive-foreground: 210 40% 98%;
+      --border: 217 33% 17%;
+      --input: 217 33% 17%;
+      --ring: 224 71% 4%;
+      --background: 224 71% 4%;
+      --foreground: 210 40% 98%;
+      --card: 224 71% 4%;
+      --card-foreground: 210 40% 98%;
+      --popover: 224 71% 4%;
+      --popover-foreground: 210 40% 98%;
+    }
+
+    .bg-gradient-hero {
+      background: var(--gradient-hero);
+    }
+
+    .bg-gradient-card {
+      background: var(--gradient-card);
+    }
+
+    .bg-gradient-accent {
+      background: var(--gradient-accent);
+    }
+
+    .transition-smooth {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+  </style>
+</head>
+
+<body class="min-h-screen bg-background text-foreground">
+  <!-- Header -->
+  <div id="header"></div>
+
+  <!-- Header Section -->
+  <section class="flex flex-row h-[110px] pt-[70px] pb-[20px] items-center justify-center bg-gradient-to-r from-blue-600 to-green-600 text-white text-center">
+    <div class="flex flex-row gap-[10px]">
+      <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+        d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m0 0L17 18"></path>
+      </svg>
+
+      <span class="text-3xl lg:text-4xl font-bold">Finalizar compra</span>
+    </div>
+  </section>
+
+  <div class="container mx-auto px-4 lg:px-8 py-12">
+    <div class="grid lg:grid-cols-3 gap-8">
+      <!-- Main Form -->
+      <div class="lg:col-span-2 space-y-8">
+        <!-- Customer Information -->
+        <div class="p-6 bg-gradient-card border-0 rounded-lg border border-border">
+          <div class="flex items-center space-x-3 mb-6">
+            <div
+              class="w-8 h-8 bg-gradient-hero rounded-full flex items-center justify-center text-white text-sm font-bold">
+              1
+            </div>
+            <h2 class="text-xl font-bold text-foreground">Dados Pessoais</h2>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-4">
+            <div class="space-y-2">
+              <label for="name" class="flex items-center space-x-2 text-sm font-medium text-foreground">
+                <i data-lucide="user" class="w-4 h-4"></i>
+                <span>Nome Completo</span>
+              </label>
+              <input id="name" type="text" placeholder="Seu nome completo"
+                class="w-full px-3 py-2 border border-input bg-background rounded-md text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring">
+            </div>
+
+            <div class="space-y-2">
+              <label for="email" class="flex items-center space-x-2 text-sm font-medium text-foreground">
+                <i data-lucide="mail" class="w-4 h-4"></i>
+                <span>E-mail</span>
+              </label>
+              <input id="email" type="email" placeholder="seu@email.com"
+                class="w-full px-3 py-2 border border-input bg-background rounded-md text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring">
+            </div>
+
+            <div class="space-y-2">
+              <label for="phone" class="flex items-center space-x-2 text-sm font-medium text-foreground">
+                <i data-lucide="phone" class="w-4 h-4"></i>
+                <span>Telefone</span>
+              </label>
+              <input id="phone" type="text" placeholder="(11) 99999-9999"
+                class="w-full px-3 py-2 border border-input bg-background rounded-md text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring">
+            </div>
+
+            <div class="space-y-2">
+              <label for="university" class="text-sm font-medium text-foreground">Universidade (Opcional)</label>
+              <input id="university" type="text" placeholder="Nome da sua universidade"
+                class="w-full px-3 py-2 border border-input bg-background rounded-md text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring">
+              <p class="text-xs text-muted-foreground">Para desconto universitário de 10%</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Shipping Address -->
+        <div class="p-6 bg-gradient-card border-0 rounded-lg border border-border">
+          <div class="flex items-center space-x-3 mb-6">
+            <div
+              class="w-8 h-8 bg-gradient-hero rounded-full flex items-center justify-center text-white text-sm font-bold">
+              2
+            </div>
+            <h2 class="text-xl font-bold text-foreground">Endereço de Entrega</h2>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-4">
+            <div class="space-y-2">
+              <label for="cep" class="text-sm font-medium text-foreground">CEP</label>
+              <input id="cep" type="text" placeholder="00000-000"
+                class="w-full px-3 py-2 border border-input bg-background rounded-md text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring">
+            </div>
+
+            <div class="md:col-span-2 space-y-2">
+              <label for="address" class="flex items-center space-x-2 text-sm font-medium text-foreground">
+                <i data-lucide="map-pin" class="w-4 h-4"></i>
+                <span>Endereço</span>
+              </label>
+              <input id="address" type="text" placeholder="Rua, número, complemento"
+                class="w-full px-3 py-2 border border-input bg-background rounded-md text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring">
+            </div>
+
+            <div class="space-y-2">
+              <label for="neighborhood" class="text-sm font-medium text-foreground">Bairro</label>
+              <input id="neighborhood" type="text" placeholder="Seu bairro"
+                class="w-full px-3 py-2 border border-input bg-background rounded-md text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring">
+            </div>
+
+            <div class="space-y-2">
+              <label for="city" class="text-sm font-medium text-foreground">Cidade</label>
+              <input id="city" type="text" placeholder="Sua cidade"
+                class="w-full px-3 py-2 border border-input bg-background rounded-md text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring">
+            </div>
+
+            <div class="space-y-2">
+              <label for="state" class="text-sm font-medium text-foreground">Estado</label>
+              <select id="state"
+                class="w-full px-3 py-2 border border-input bg-background rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-ring">
+                <option value="">Selecione</option>
+                <option value="sp">São Paulo</option>
+                <option value="rj">Rio de Janeiro</option>
+                <option value="mg">Minas Gerais</option>
+                <option value="rs">Rio Grande do Sul</option>
+                <option value="pr">Paraná</option>
+                <option value="sc">Santa Catarina</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Shipping Method -->
+        <div class="p-6 bg-gradient-card border-0 rounded-lg border border-border">
+          <div class="flex items-center space-x-3 mb-6">
+            <div
+              class="w-8 h-8 bg-gradient-hero rounded-full flex items-center justify-center text-white text-sm font-bold">
+              3
+            </div>
+            <h2 class="text-xl font-bold text-foreground">Forma de Entrega</h2>
+          </div>
+
+          <div class="space-y-3">
+            <div class="flex items-center space-x-3">
+              <input type="radio" id="standard" name="shipping" value="standard" checked class="w-4 h-4 text-primary">
+              <div
+                class="flex-1 flex items-center justify-between p-3 border rounded-lg hover:bg-muted/50 transition-colors cursor-pointer"
+                onclick="selectShipping('standard')">
+                <div class="flex items-center space-x-3">
+                  <i data-lucide="truck" class="w-5 h-5 text-muted-foreground"></i>
+                  <div>
+                    <p class="font-medium">Entrega Padrão</p>
+                    <p class="text-sm text-muted-foreground">5-7 dias úteis</p>
+                  </div>
+                </div>
+                <span class="font-bold text-primary">R$ 15</span>
+              </div>
+            </div>
+
+            <div class="flex items-center space-x-3">
+              <input type="radio" id="express" name="shipping" value="express" class="w-4 h-4 text-primary">
+              <div
+                class="flex-1 flex items-center justify-between p-3 border rounded-lg hover:bg-muted/50 transition-colors cursor-pointer"
+                onclick="selectShipping('express')">
+                <div class="flex items-center space-x-3">
+                  <i data-lucide="truck" class="w-5 h-5 text-muted-foreground"></i>
+                  <div>
+                    <p class="font-medium">Entrega Expressa</p>
+                    <p class="text-sm text-muted-foreground">2-3 dias úteis</p>
+                  </div>
+                </div>
+                <span class="font-bold text-primary">R$ 30</span>
+              </div>
+            </div>
+
+            <div class="flex items-center space-x-3">
+              <input type="radio" id="premium" name="shipping" value="premium" class="w-4 h-4 text-primary">
+              <div
+                class="flex-1 flex items-center justify-between p-3 border rounded-lg hover:bg-muted/50 transition-colors cursor-pointer"
+                onclick="selectShipping('premium')">
+                <div class="flex items-center space-x-3">
+                  <i data-lucide="truck" class="w-5 h-5 text-muted-foreground"></i>
+                  <div>
+                    <p class="font-medium">Entrega Premium</p>
+                    <p class="text-sm text-muted-foreground">1 dia útil</p>
+                  </div>
+                </div>
+                <span class="font-bold text-primary">R$ 50</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Payment Method -->
+        <div class="p-6 bg-gradient-card border-0 rounded-lg border border-border">
+          <div class="flex items-center space-x-3 mb-6">
+            <div
+              class="w-8 h-8 bg-gradient-hero rounded-full flex items-center justify-center text-white text-sm font-bold">
+              4
+            </div>
+            <h2 class="text-xl font-bold text-foreground">Forma de Pagamento</h2>
+          </div>
+
+          <div class="space-y-4">
+            <!-- PIX -->
+            <div class="flex items-center space-x-3">
+              <input type="radio" id="pix" name="payment" value="pix" checked class="w-4 h-4 text-primary"
+                onchange="selectPayment('pix')">
+              <div class="flex items-center space-x-2">
+                <i data-lucide="qr-code" class="w-5 h-5 text-muted-foreground"></i>
+                <span>PIX</span>
+                <span
+                  class="inline-flex items-center rounded-full bg-secondary/10 px-2.5 py-0.5 text-xs font-medium text-secondary">5%
+                  de desconto</span>
+              </div>
+            </div>
+
+            <div id="pix-details" class="ml-7 p-4 bg-muted/30 rounded-lg">
+              <div class="text-center space-y-3">
+                <div class="w-32 h-32 bg-white mx-auto rounded-lg flex items-center justify-center border">
+                  <i data-lucide="qr-code" class="w-16 h-16 text-muted-foreground"></i>
+                </div>
+                <p class="text-sm text-muted-foreground">
+                  Após confirmar o pedido, você receberá o QR Code para pagamento
+                </p>
+                <div class="bg-secondary/20 p-3 rounded-lg">
+                  <p class="text-sm font-medium text-secondary">
+                    Valor final com desconto PIX: <span id="pix-total">R$ 289,05</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Credit Card -->
+            <div class="flex items-center space-x-3">
+              <input type="radio" id="credit-card" name="payment" value="credit-card" class="w-4 h-4 text-primary"
+                onchange="selectPayment('credit-card')">
+              <div class="flex items-center space-x-2">
+                <i data-lucide="credit-card" class="w-5 h-5 text-muted-foreground"></i>
+                <span>Cartão de Crédito</span>
+                <span
+                  class="inline-flex items-center rounded-full bg-secondary/10 px-2.5 py-0.5 text-xs font-medium text-secondary">12x
+                  sem juros</span>
+              </div>
+            </div>
+
+            <div id="credit-card-details" class="ml-7 grid md:grid-cols-2 gap-4 p-4 bg-muted/30 rounded-lg hidden">
+              <div class="md:col-span-2 space-y-2">
+                <label for="card-number" class="text-sm font-medium text-foreground">Número do Cartão</label>
+                <input id="card-number" type="text" placeholder="0000 0000 0000 0000"
+                  class="w-full px-3 py-2 border border-input bg-background rounded-md text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring">
+              </div>
+              <div class="space-y-2">
+                <label for="card-name" class="text-sm font-medium text-foreground">Nome no Cartão</label>
+                <input id="card-name" type="text" placeholder="Nome como no cartão"
+                  class="w-full px-3 py-2 border border-input bg-background rounded-md text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring">
+              </div>
+              <div class="grid grid-cols-2 gap-2">
+                <div class="space-y-2">
+                  <label for="expiry" class="text-sm font-medium text-foreground">Validade</label>
+                  <input id="expiry" type="text" placeholder="MM/AA"
+                    class="w-full px-3 py-2 border border-input bg-background rounded-md text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring">
+                </div>
+                <div class="space-y-2">
+                  <label for="cvv" class="text-sm font-medium text-foreground">CVV</label>
+                  <input id="cvv" type="text" placeholder="123"
+                    class="w-full px-3 py-2 border border-input bg-background rounded-md text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring">
+                </div>
+              </div>
+              <div class="md:col-span-2 space-y-2">
+                <label for="installments" class="text-sm font-medium text-foreground">Parcelas</label>
+                <select id="installments"
+                  class="w-full px-3 py-2 border border-input bg-background rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-ring">
+                  <option value="1">1x de R$ 304,00 à vista</option>
+                  <option value="2">2x de R$ 152,00 sem juros</option>
+                  <option value="3">3x de R$ 101,33 sem juros</option>
+                  <option value="6">6x de R$ 50,67 sem juros</option>
+                  <option value="12">12x de R$ 25,33 sem juros</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Debit Card -->
+            <div class="flex items-center space-x-3">
+              <input type="radio" id="debit-card" name="payment" value="debit-card" class="w-4 h-4 text-primary"
+                onchange="selectPayment('debit-card')">
+              <div class="flex items-center space-x-2">
+                <i data-lucide="banknote" class="w-5 h-5 text-muted-foreground"></i>
+                <span>Cartão de Débito</span>
+                <span
+                  class="inline-flex items-center rounded-full bg-secondary/10 px-2.5 py-0.5 text-xs font-medium text-secondary">3%
+                  de desconto</span>
+              </div>
+            </div>
+
+            <div id="debit-card-details" class="ml-7 grid md:grid-cols-2 gap-4 p-4 bg-muted/30 rounded-lg hidden">
+              <div class="md:col-span-2 space-y-2">
+                <label for="debit-card-number" class="text-sm font-medium text-foreground">Número do Cartão</label>
+                <input id="debit-card-number" type="text" placeholder="0000 0000 0000 0000"
+                  class="w-full px-3 py-2 border border-input bg-background rounded-md text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring">
+              </div>
+              <div class="space-y-2">
+                <label for="debit-card-name" class="text-sm font-medium text-foreground">Nome no Cartão</label>
+                <input id="debit-card-name" type="text" placeholder="Nome como no cartão"
+                  class="w-full px-3 py-2 border border-input bg-background rounded-md text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring">
+              </div>
+              <div class="grid grid-cols-2 gap-2">
+                <div class="space-y-2">
+                  <label for="debit-expiry" class="text-sm font-medium text-foreground">Validade</label>
+                  <input id="debit-expiry" type="text" placeholder="MM/AA"
+                    class="w-full px-3 py-2 border border-input bg-background rounded-md text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring">
+                </div>
+                <div class="space-y-2">
+                  <label for="debit-cvv" class="text-sm font-medium text-foreground">CVV</label>
+                  <input id="debit-cvv" type="text" placeholder="123"
+                    class="w-full px-3 py-2 border border-input bg-background rounded-md text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring">
+                </div>
+              </div>
+              <div class="bg-secondary/20 p-3 rounded-lg">
+                <p class="text-sm font-medium text-secondary">
+                  Valor final com desconto: <span id="debit-total">R$ 294,88</span>
+                </p>
+              </div>
+            </div>
+
+            <!-- Boleto -->
+            <div class="flex items-center space-x-3">
+              <input type="radio" id="boleto" name="payment" value="boleto" class="w-4 h-4 text-primary"
+                onchange="selectPayment('boleto')">
+              <div class="flex items-center space-x-2">
+                <i data-lucide="file-text" class="w-5 h-5 text-muted-foreground"></i>
+                <span>Boleto Bancário</span>
+                <span
+                  class="inline-flex items-center rounded-full bg-secondary/10 px-2.5 py-0.5 text-xs font-medium text-secondary">7%
+                  de desconto</span>
+              </div>
+            </div>
+
+            <div id="boleto-details" class="ml-7 p-4 bg-muted/30 rounded-lg hidden">
+              <div class="space-y-3">
+                <div class="flex items-center space-x-2 text-sm text-muted-foreground">
+                  <i data-lucide="file-text" class="w-4 h-4"></i>
+                  <span>O boleto será enviado por e-mail após confirmar o pedido</span>
+                </div>
+                <div class="bg-yellow-50 border border-yellow-200 p-3 rounded-lg">
+                  <p class="text-sm text-yellow-800">
+                    <strong>Importante:</strong> O prazo de vencimento é de 3 dias úteis.
+                    Após o pagamento, a aprovação pode levar até 2 dias úteis.
+                  </p>
+                </div>
+                <div class="bg-secondary/20 p-3 rounded-lg">
+                  <p class="text-sm font-medium text-secondary">
+                    Valor final com desconto: <span id="boleto-total">R$ 282,72</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Order Summary -->
+      <div class="space-y-6">
+        <div class="p-6 bg-gradient-card border-0 rounded-lg border border-border sticky top-4">
+          <h3 class="text-lg font-bold text-foreground mb-4 flex items-center space-x-2">
+            <i data-lucide="package" class="w-5 h-5"></i>
+            <span>Resumo do Pedido</span>
+          </h3>
+
+          <!-- Product -->
+          <div class="flex space-x-4 mb-6">
+            <img src="src/assets/glasses-collection.jpg" alt="Ray-Ban Classic Aviator"
+              class="w-16 h-16 object-cover rounded-lg">
+            <div class="flex-1 space-y-1">
+              <h4 class="font-medium text-sm">Ray-Ban Classic Aviator</h4>
+              <p class="text-xs text-muted-foreground">Óculos de Sol</p>
+              <p class="text-xs text-muted-foreground">Cor: Dourado</p>
+              <div class="flex items-center space-x-2">
+                <span class="font-bold text-primary">R$ 299</span>
+                <span class="text-xs text-muted-foreground line-through">R$ 399</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="w-full h-px bg-border my-4"></div>
+
+          <!-- Price Breakdown -->
+          <div class="space-y-3">
+            <div class="flex justify-between text-sm">
+              <span>Subtotal</span>
+              <span>R$ 299,00</span>
+            </div>
+
+            <div class="flex justify-between text-sm">
+              <span>Frete (<span id="shipping-name">Entrega Padrão</span>)</span>
+              <span id="shipping-price">R$ 15,00</span>
+            </div>
+
+            <div class="flex justify-between text-sm text-secondary">
+              <span>Desconto Universitário</span>
+              <span>-R$ 30,00</span>
+            </div>
+
+            <div id="payment-discount" class="flex justify-between text-sm text-secondary">
+              <span>Desconto PIX</span>
+              <span>-R$ 14,95</span>
+            </div>
+
+            <div class="w-full h-px bg-border"></div>
+
+            <div class="flex justify-between text-lg font-bold">
+              <span>Total</span>
+              <span class="text-primary" id="final-total">R$ 269,05</span>
+            </div>
+          </div>
+
+          <button onclick="finalizePurchase()"
+            class="w-full mt-6 bg-gradient-hero hover:opacity-90 transition-opacity text-lg h-12 rounded-md text-white font-medium flex items-center justify-center space-x-2">
+            <i data-lucide="check" class="w-5 h-5"></i>
+            <span>Finalizar Compra</span>
+          </button>
+
+          <div class="mt-4 text-center">
+            <div class="flex items-center justify-center space-x-2 text-xs text-muted-foreground">
+              <i data-lucide="shield" class="w-4 h-4"></i>
+              <span>Pagamento protegido por SSL</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- University Discount Info -->
+        <div class="p-4 bg-gradient-accent/10 border border-secondary/20 rounded-lg">
+          <div class="text-center">
+            <h4 class="font-semibold text-secondary mb-2">Desconto Universitário Aplicado!</h4>
+            <p class="text-sm text-muted-foreground">
+              Você economizou R$ 30,00 como estudante universitário
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div id="footer"></div>
+
+  <!-- Importation script Components -->
+  <script src="../components/elements/header/script.js" defer></script>
+  <script src="../components/elements/footer/script.js" defer></script>
+
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      // Initialize Lucide icons
+      lucide.createIcons();
+
+      // Price calculation variables
+      let subtotal = 299;
+      let universityDiscount = 30;
+      let shippingPrices = {
+        'standard': 15,
+        'express': 30,
+        'premium': 50
+      };
+      let shippingNames = {
+        'standard': 'Entrega Padrão',
+        'express': 'Entrega Expressa',
+        'premium': 'Entrega Premium'
+      };
+      let currentShipping = 'standard';
+      let currentPayment = 'pix';
+
+      function selectShipping(method) {
+        currentShipping = method;
+        document.getElementById('shipping-name').textContent = shippingNames[method];
+        document.getElementById('shipping-price').textContent = `R$ ${shippingPrices[method]},00`;
+        updateTotal();
+      }
+
+      function selectPayment(method) {
+        currentPayment = method;
+
+        // Hide all payment details
+        document.getElementById('pix-details').classList.toggle('hidden', method !== 'pix');
+        document.getElementById('credit-card-details').classList.toggle('hidden', method !== 'credit-card');
+        document.getElementById('debit-card-details').classList.toggle('hidden', method !== 'debit-card');
+        document.getElementById('boleto-details').classList.toggle('hidden', method !== 'boleto');
+
+        updateTotal();
+      }
+
+      function getPaymentDiscount() {
+        switch (currentPayment) {
+          case 'pix':
+            return subtotal * 0.05;
+          case 'debit-card':
+            return subtotal * 0.03;
+          case 'boleto':
+            return subtotal * 0.07;
+          default:
+            return 0;
+        }
+      }
+
+      function updateTotal() {
+        const shippingPrice = shippingPrices[currentShipping];
+        const paymentDiscount = getPaymentDiscount();
+        const total = subtotal + shippingPrice - universityDiscount - paymentDiscount;
+
+        // Update payment discount display
+        const paymentDiscountElement = document.getElementById('payment-discount');
+        if (paymentDiscount > 0) {
+          const discountNames = {
+            'pix': 'PIX',
+            'debit-card': 'Débito',
+            'boleto': 'Boleto'
+          };
+          paymentDiscountElement.innerHTML = `
+                    <span>Desconto ${discountNames[currentPayment]}</span>
+                    <span>-R$ ${paymentDiscount.toFixed(2)}</span>
+                `;
+          paymentDiscountElement.style.display = 'flex';
+        } else {
+          paymentDiscountElement.style.display = 'none';
+        }
+
+        // Update total
+        document.getElementById('final-total').textContent = `R$ ${total.toFixed(2)}`;
+
+        // Update specific payment totals
+        document.getElementById('pix-total').textContent = `R$ ${(subtotal + shippingPrice - universityDiscount - (subtotal * 0.05)).toFixed(2)}`;
+        document.getElementById('debit-total').textContent = `R$ ${(subtotal + shippingPrice - universityDiscount - (subtotal * 0.03)).toFixed(2)}`;
+        document.getElementById('boleto-total').textContent = `R$ ${(subtotal + shippingPrice - universityDiscount - (subtotal * 0.07)).toFixed(2)}`;
+      }
+
+      function finalizePurchase() {
+        alert('Compra finalizada com sucesso! Você receberá um e-mail com os detalhes do pedido.');
+      }
+
+      // Add click handlers for shipping options
+      document.querySelectorAll('input[name="shipping"]').forEach(radio => {
+        radio.addEventListener('change', function () {
+          selectShipping(this.value);
+        });
+      });
+
+      // Add click handlers for payment options
+      document.querySelectorAll('input[name="payment"]').forEach(radio => {
+        radio.addEventListener('change', function () {
+          selectPayment(this.value);
+        });
+      });
+
+      // Initialize the page
+      updateTotal();
+
+      document.getElementById("header").appendChild(headerElement())
+      document.getElementById("footer").appendChild(footerElement())
+    })
+  </script>
+</body>
+
+</html>
