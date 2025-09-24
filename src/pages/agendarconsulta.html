@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport">
+  <title>Agende sua Consulta - Vision Care</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: 'hsl(221, 83%, 53%)',
+            'primary-foreground': 'hsl(210, 40%, 98%)',
+            secondary: 'hsl(210, 40%, 96%)',
+            'secondary-foreground': 'hsl(222.2, 84%, 4.9%)',
+            muted: 'hsl(210, 40%, 96%)',
+            'muted-foreground': 'hsl(215.4, 16.3%, 46.9%)',
+            accent: 'hsl(210, 40%, 96%)',
+            'accent-foreground': 'hsl(222.2, 84%, 4.9%)',
+            destructive: 'hsl(0, 84%, 60%)',
+            'destructive-foreground': 'hsl(210, 40%, 98%)',
+            border: 'hsl(214.3, 31.8%, 91.4%)',
+            input: 'hsl(214.3, 31.8%, 91.4%)',
+            ring: 'hsl(221, 83%, 53%)',
+            background: 'hsl(0, 0%, 100%)',
+            foreground: 'hsl(222.2, 84%, 4.9%)',
+            card: 'hsl(0, 0%, 100%)',
+            'card-foreground': 'hsl(222.2, 84%, 4.9%)',
+            popover: 'hsl(0, 0%, 100%)',
+            'popover-foreground': 'hsl(222.2, 84%, 4.9%)',
+          },
+          backgroundImage: {
+            'gradient-hero': 'linear-gradient(135deg, hsl(221, 83%, 53%), hsl(221, 83%, 63%))',
+          },
+          boxShadow: {
+            'hero': '0 10px 30px -10px hsl(221, 83%, 53%, 0.3)',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-background">
+  <!-- Header -->
+  <div id="header"></div>
+
+  <div class="flex flex-col min-h-screen">
+    <!-- Hero Section -->
+    <section
+      class="flex flex-col h-[300px] pt-[50px] justify-center items-center bg-gradient-to-r from-blue-600 to-green-600 text-white text-center">
+      <div class="px-4 lg:px-8">
+        <div class="max-w-4xl mx-auto text-center text-white">
+          <div class="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
+            <i data-lucide="eye" class="w-12 h-20 text-white"></i>
+          </div>
+
+          <h1 class="text-4xl lg:text-5xl font-bold mb-6">Agende sua Consulta</h1>
+
+          <p class="text-xl text-white/90 mb-8">Cuide da sua saúde visual com nossos especialistas. Escolha o
+            melhor horário para você.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Appointment Form Section -->
+    <section class="flex flex-col items-center py-16">
+      <div class="container max-w-[1280px] px-4 lg:px-8">
+        <div class="mx-auto">
+          <div class="grid lg:grid-cols-2 gap-12">
+            <!-- Form -->
+            <div class="space-y-8">
+              <div>
+                <h2 class="text-3xl font-bold text-foreground mb-4">
+                  Preencha seus dados
+                </h2>
+                <p class="text-muted-foreground">
+                  Complete o formulário abaixo e nossa equipe entrará em contato para confirmar seu agendamento.
+                </p>
+              </div>
+
+              <form id="appointmentForm" class="space-y-6">
+                <div class="grid md:grid-cols-2 gap-4">
+                  <div class="space-y-2">
+                    <label for="firstName" class="text-sm font-medium text-foreground">Nome</label>
+                    <input id="firstName" name="firstName" placeholder="Seu nome"
+                      class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                      required />
+                  </div>
+                  <div class="space-y-2">
+                    <label for="lastName" class="text-sm font-medium text-foreground">Sobrenome</label>
+                    <input id="lastName" name="lastName" placeholder="Seu sobrenome"
+                      class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                      required />
+                  </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4">
+                  <div class="space-y-2">
+                    <label for="email" class="text-sm font-medium text-foreground">Email</label>
+                    <input id="email" name="email" type="email" placeholder="seu@email.com"
+                      class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                      required />
+                  </div>
+                  <div class="space-y-2">
+                    <label for="phone" class="text-sm font-medium text-foreground">Telefone</label>
+                    <input id="phone" name="phone" placeholder="(11) 99999-9999"
+                      class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                      required />
+                  </div>
+                </div>
+
+                <div class="space-y-2">
+                  <label for="university" class="text-sm font-medium text-foreground">Universidade</label>
+                  <select id="university" name="university"
+                    class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                    required>
+                    <option value="">Selecione sua universidade</option>
+                    <option value="usp">Universidade de São Paulo (USP)</option>
+                    <option value="unicamp">Universidade Estadual de Campinas (UNICAMP)</option>
+                    <option value="unesp">Universidade Estadual Paulista (UNESP)</option>
+                    <option value="puc">Pontifícia Universidade Católica (PUC)</option>
+                    <option value="mackenzie">Universidade Presbiteriana Mackenzie</option>
+                    <option value="outras">Outras</option>
+                  </select>
+                </div>
+
+                <div class="space-y-2">
+                  <label for="service" class="text-sm font-medium text-foreground">Tipo de Consulta</label>
+                  <select id="service" name="service"
+                    class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                    required>
+                    <option value="">Selecione o tipo de consulta</option>
+                    <option value="consulta-rotina">Consulta de Rotina</option>
+                    <option value="exame-vista">Exame de Vista</option>
+                    <option value="adaptacao-lentes">Adaptação de Lentes de Contato</option>
+                    <option value="consulta-especializada">Consulta Especializada</option>
+                    <option value="emergencia">Emergência Oftalmológica</option>
+                  </select>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4">
+                  <div class="space-y-2">
+                    <label for="preferredDate" class="text-sm font-medium text-foreground">Data Preferida</label>
+                    <input type="date" id="preferredDate" name="preferredDate"
+                      class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                      required />
+                  </div>
+
+                  <div class="space-y-2">
+                    <label for="preferredTime" class="text-sm font-medium text-foreground">Horário Preferido</label>
+                    <select id="preferredTime" name="preferredTime"
+                      class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                      required>
+                      <option value="">Selecione o horário</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="space-y-2">
+                  <label for="notes" class="text-sm font-medium text-foreground">Observações (Opcional)</label>
+                  <textarea id="notes" name="notes"
+                    placeholder="Descreva sintomas, dúvidas ou informações relevantes..."
+                    class="flex min-h-[100px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"></textarea>
+                </div>
+
+                <button type="submit"
+                  class="w-full inline-flex items-center justify-center rounded-md text-sm font-medium bg-gradient-to-r from-blue-600 to-green-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 bg-gradient-hero text-white hover:opacity-90 shadow-hero">
+                  Confirmar Agendamento
+                </button>
+              </form>
+            </div>
+
+            <!-- Info Sidebar -->
+            <div class="space-y-8">
+              <div class="bg-card border border-border rounded-lg p-6">
+                <h3 class="text-xl font-semibold text-foreground mb-4">
+                  Informações Importantes
+                </h3>
+                <div class="space-y-4 text-sm text-muted-foreground">
+                  <div class="flex items-start gap-3">
+                    <i data-lucide="clock" class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"></i>
+                    <div>
+                      <p class="font-medium text-foreground">Horário de Funcionamento</p>
+                      <p>Segunda à Sexta: 8h às 18h</p>
+                      <p>Sábado: 8h às 12h</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start gap-3">
+                    <i data-lucide="map-pin" class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"></i>
+                    <div>
+                      <p class="font-medium text-foreground">Localização</p>
+                      <p>Rua da Universidade, 123</p>
+                      <p>Centro Universitário - SP</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-card border border-border rounded-lg p-6">
+                <h3 class="text-xl font-semibold text-foreground mb-4">
+                  Contato Direto
+                </h3>
+                <div class="space-y-3">
+                  <div class="flex items-center gap-3">
+                    <i data-lucide="phone" class="w-5 h-5 text-primary"></i>
+                    <div>
+                      <p class="font-medium text-foreground">(11) 3456-7890</p>
+                      <p class="text-sm text-muted-foreground">WhatsApp disponível</p>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-3">
+                    <i data-lucide="mail" class="w-5 h-5 text-primary"></i>
+                    <div>
+                      <p class="font-medium text-foreground">contato@universityvision.com.br</p>
+                      <p class="text-sm text-muted-foreground">Respondemos em até 2h</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-gradient-to-r from-blue-600 to-green-600 rounded-lg p-6 text-white">
+                <h3 class="text-xl font-semibold mb-3">
+                  Desconto Universitário
+                </h3>
+                <p class="text-white/90 mb-4">
+                  Estudantes têm 15% de desconto em todos os serviços e produtos.
+                </p>
+                <p class="text-sm text-white/80">
+                  * Apresente sua carteirinha na consulta
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <div id="footer"></div>
+
+  <!-- Importação dos Components -->
+  <script src="../components/elements/header/script.js" defer></script>
+  <script src="../components/elements/footer/script.js" defer></script>
+
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      // Initialize Lucide icons
+      lucide.createIcons();
+
+      document.getElementById("header").appendChild(headerElement())
+      document.getElementById("footer").appendChild(footerElement())
+    })
+  </script>
+</body>
+
+</html>
