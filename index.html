@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vision Care</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="flex flex-col items-center w-[100%] min-h-screen p-0">
+
+  <div id="header"></div>
+
+  <main class="w-[100%]">
+    <section class="relative h-[70vh] max-h-[800px] flex items-center justify-center overflow-hidden pt-16">
+      <!-- Background Gradient -->
+      <div class="absolute inset-0 bg-gradient-to-br from-blue-500 to-green-400 opacity-10"></div>
+
+      <div class="container mx-auto px-4 lg:px-8 py-20 max-w-[1280px]">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <!-- Content -->
+          <div class="space-y-8">
+            <div class="space-y-4">
+              <div class="flex items-center space-x-2 text-blue-600">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+                  </path>
+                </svg>
+                <span class="font-semibold">Vision Care</span>
+              </div>
+
+              <div class="flex flex-col">
+                <h1 class="text-4xl lg:text-6xl font-bold text-gray-900 leading-tight">Visão Perfeita</h1>
+
+                <div class="flex flex-row">
+                  <h1 class="text-4xl lg:text-6xl font-bold text-gray-900 leading-tight">para</h1>
+                  <h1
+                    class="text-4xl lg:text-6xl font-bold text-gray-900 leading-tight bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent ml-3">
+                    Sua Carreira</h1>
+                </div>
+              </div>
+
+              <p class="text-lg text-gray-600 max-w-lg">
+                Especialistas em óptica universitária. Oferecemos os melhores produtos e serviços
+                com descontos exclusivos para estudantes e professores.
+              </p>
+            </div>
+
+            <!-- Features -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div class="flex items-center space-x-3 p-4 rounded-lg bg-white shadow-lg">
+                <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <div>
+                  <h4 class="font-semibold">Qualidade</h4>
+                  <p class="text-sm text-gray-600">Produtos premium</p>
+                </div>
+              </div>
+
+              <div class="flex items-center space-x-3 p-4 rounded-lg bg-white shadow-lg">
+                <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z">
+                  </path>
+                </svg>
+                <div>
+                  <h4 class="font-semibold">Descontos</h4>
+                  <p class="text-sm text-gray-600">Até 30% off</p>
+                </div>
+              </div>
+
+              <div class="flex items-center space-x-3 p-4 rounded-lg bg-white shadow-lg">
+                <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+                  </path>
+                </svg>
+                <div>
+                  <h4 class="font-semibold">Exames</h4>
+                  <p class="text-sm text-gray-600">Consulta grátis</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4">
+              <button
+                class="px-8 py-3 bg-gradient-to-r from-blue-600 to-green-600 text-white font-medium rounded-lg cursor-pointer hover:from-blue-700 hover:to-blue-800 transition-all duration-200 shadow-lg"
+                onclick="navigateTo('/agendarConsulta.html')">
+                Agende sua Consulta
+              </button>
+
+              <button
+                class="px-8 py-4 border-2 border-gray-300 text-gray-700 font-medium rounded-lg cursor-pointer hover:border-blue-600 hover:text-blue-600 transition-all duration-200"
+                onclick="navigateTo('/produtos.html')">
+                Ver Produtos
+              </button>
+            </div>
+          </div>
+
+          <!-- Image -->
+          <div class="relative">
+            <div class="relative rounded-2xl overflow-hidden shadow-2xl">
+              <img
+                src="https://images.unsplash.com/photo-1574258495973-f010dfbb5371?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+                alt="Óculos modernos para universitários" class="w-full h-auto object-cover" />
+              <div class="absolute inset-0 bg-gradient-to-br from-blue-600 to-purple-600 opacity-20"></div>
+            </div>
+            <!-- Floating Elements -->
+            <div class="absolute -top-4 -right-4 w-20 h-20 bg-green-500 rounded-full opacity-20 animate-pulse"></div>
+            <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-blue-600 rounded-full opacity-10 animate-pulse"
+              style="animation-delay: 300ms;"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="py-20 bg-gray-50">
+      <div class="container mx-auto px-4 lg:px-8 max-w-[1280px]">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+            Nossos Serviços
+          </h2>
+          <p class="text-lg text-gray-600">
+            Oferecemos uma gama completa de serviços ópticos pensados especialmente
+            para a comunidade universitária, com qualidade premium e preços acessíveis.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="servicesGrid"></div>
+      </div>
+    </section>
+
+    <section id="products" class="py-20 bg-white">
+      <div class="container mx-auto px-4 lg:px-8 max-w-[1280px]">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+            Nossos Produtos
+          </h2>
+          <p class="text-lg text-gray-600">
+            Descubra nossa seleção de óculos premium com descontos exclusivos para universitários.
+            Qualidade, estilo e preços que cabem no seu orçamento.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="productsGrid"></div>
+
+        <!-- CTA Section -->
+        <div class="text-center mt-12">
+          <button
+            class="px-8 py-3 border-2 border-blue-600 text-blue-600 font-medium rounded-lg hover:bg-blue-600 hover:text-white transition-all duration-200"
+            onclick="navigateTo('/src/pages/produtos.html')">
+            Ver Catálogo Completo
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section id="universities" class="py-20 bg-gray-50">
+      <div class="container mx-auto px-4 lg:px-8 max-w-[1280px]">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+            Universidades Parceiras
+          </h2>
+          <p class="text-lg text-gray-600">
+            Oferecemos descontos exclusivos para estudantes e funcionários das principais
+            instituições de ensino do Brasil. Confira se sua universidade é parceira!
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="universitiesGrid"></div>
+
+        <!-- Stats Section -->
+        <div class="grid md:grid-cols-3 gap-8 mt-16">
+          <div class="text-center">
+            <div class="text-3xl lg:text-4xl font-bold text-blue-600 mb-2">50+</div>
+            <p class="text-gray-600">Universidades Parceiras</p>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl lg:text-4xl font-bold text-green-600 mb-2">15.000+</div>
+            <p class="text-gray-600">Estudantes Atendidos</p>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl lg:text-4xl font-bold text-blue-600 mb-2">95%</div>
+            <p class="text-gray-600">Satisfação dos Clientes</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div id="footer"></div>
+  </main>
+
+  <!-- Scripts para importação de Components -->
+  <script src="./src/components/script.js" defer></script>
+  <script src="./src/components/elements/header/script.js" defer></script>
+  <script src="./src/components/elements/footer/script.js" defer></script>
+  <script src="./src/components/cards/serviceCard/script.js" defer></script>
+  <script src="./src/components/cards/productCard/script.js" defer></script>
+  <script src="./src/components/cards/universityCard/script.js" defer></script>
+
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      // #region Funções para controle interno.
+      const navigateTo = (path) => window.location.href = path;
+      // #endregion
+
+      // #region Constants para mook de Dados.
+      const services = [
+        {
+          icon: `
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
+            </svg>
+          `,
+          title: "Exames de Vista",
+          description: "Avaliação completa da sua visão com equipamentos modernos e profissionais especializados.",
+          features: ["Consulta gratuita", "Resultado em 30 min", "Prescrição digital"],
+          price: "Grátis",
+          duration: "30 min",
+          badge: "Popular",
+          color: "text-blue-600"
+        },
+        {
+          icon: `
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5a2 2 0 11-4 0 2 2 0 014 0z"></path>
+            </svg>
+          `,
+          title: "Óculos de Grau",
+          description: "Amplo catálogo de armações modernas e lentes de alta qualidade para todos os estilos.",
+          features: ["Mais de 500 modelos", "Lentes antirreflexo", "Garantia de 2 anos"],
+          price: "R$ 199",
+          duration: "1 hora",
+          badge: null,
+          color: "text-green-600"
+        },
+        {
+          icon: `
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          `,
+          title: "Óculos de Sol",
+          description: "Proteção UV completa com design moderno. Ideais para o dia a dia universitário.",
+          features: ["Proteção UV 400", "Lentes polarizadas", "Armações resistentes"],
+          price: "R$ 149",
+          duration: "45 min",
+          badge: "Novo",
+          color: "text-blue-600"
+        }
+      ];
+
+      const universities = [
+        {
+          name: "Universidade de São Paulo",
+          acronym: "USP",
+          students: "92.000",
+          discount: "30%",
+          location: "São Paulo",
+          rating: 4.9,
+          logo: "🎓",
+          color: "from-blue-500 to-blue-600"
+        },
+        {
+          name: "Universidade Federal do Rio de Janeiro",
+          acronym: "UFRJ",
+          students: "67.000",
+          discount: "25%",
+          location: "Rio de Janeiro",
+          rating: 4.8,
+          logo: "🏛️",
+          color: "from-green-500 to-green-600"
+        },
+        {
+          name: "Universidade Estadual de Campinas",
+          acronym: "UNICAMP",
+          students: "37.000",
+          discount: "30%",
+          location: "Campinas",
+          rating: 4.9,
+          logo: "🔬",
+          color: "from-purple-500 to-purple-600"
+        },
+        {
+          name: "Universidade Federal de Minas Gerais",
+          acronym: "UFMG",
+          students: "49.000",
+          discount: "28%",
+          location: "Belo Horizonte",
+          rating: 4.7,
+          logo: "⚡",
+          color: "from-orange-500 to-orange-600"
+        },
+        {
+          name: "Pontifícia Universidade Católica",
+          acronym: "PUC-SP",
+          students: "34.000",
+          discount: "25%",
+          location: "São Paulo",
+          rating: 4.8,
+          logo: "📚",
+          color: "from-red-500 to-red-600"
+        },
+        {
+          name: "Universidade Federal de São Carlos",
+          acronym: "UFSCar",
+          students: "18.000",
+          discount: "30%",
+          location: "São Carlos",
+          rating: 4.6,
+          logo: "🚀",
+          color: "from-teal-500 to-teal-600"
+        }
+      ];
+
+      const products = [
+        {
+          id: 1,
+          name: "Ray-Ban Classic",
+          category: "Óculos de Sol",
+          price: "R$ 299",
+          originalPrice: "R$ 399",
+          discount: "25% OFF",
+          rating: 4.8,
+          reviews: 124,
+          image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+          features: ["Proteção UV 400", "Lentes polarizadas", "Armação resistente"]
+        },
+        {
+          id: 1,
+          name: "Ray-Ban Classic",
+          category: "Óculos de Sol",
+          price: "R$ 299",
+          originalPrice: "R$ 399",
+          discount: "25% OFF",
+          rating: 4.8,
+          reviews: 124,
+          image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+          features: ["Proteção UV 400", "Lentes polarizadas", "Armação resistente"]
+        },
+        {
+          id: 3,
+          name: "Study Plus",
+          category: "Óculos de Leitura",
+          price: "R$ 129",
+          originalPrice: "R$ 180",
+          discount: "28% OFF",
+          rating: 4.7,
+          reviews: 156,
+          image: "https://images.unsplash.com/photo-1506260408121-e353d10b87c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+          features: ["Proteção digital", "Conforto prolongado", "Design ergonômico"]
+        }
+      ]
+      // #endregion
+
+      // #region Renderização de components.
+      document.getElementById("header").appendChild(headerElement())
+      document.getElementById("footer").appendChild(footerElement())
+
+      const servicesGrid = document.getElementById("servicesGrid");
+      services.forEach(service => servicesGrid.appendChild(serviceCardComponent(service)));
+
+      const universitiesGrid = document.getElementById("universitiesGrid");
+      universities.forEach(university => universitiesGrid.appendChild(universityCardComponent(university)));
+
+      const productsGrid = document.getElementById("productsGrid");
+      products.forEach(product => productsGrid.appendChild(productCardComponent(product)));
+      // #endregion
+    });
+  </script>
+</body>
+
+</html>
