@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Catálogo de Produtos - Vision Care</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lucide/dist/lucide.min.css" />
+</head>
+
+<body class="bg-gray-50">
+  <div class="flex flex-col h-screen">
+    <!-- Header -->
+    <div id="header"></div>
+
+    <!-- Hero Section -->
+    <section
+      class="flex flex-col min-h-[300px] h-[300px] pt-[50px] justify-center items-center bg-gradient-to-r from-blue-600 to-green-600 text-white text-center">
+      <div class="p-5 bg-white/10 rounded-full mb-5">
+        <svg width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink">
+          <rect width="45" height="45" fill="url(#pattern0_123_11)" />
+          <defs>
+            <pattern id="pattern0_123_11" patternContentUnits="objectBoundingBox" width="1" height="1">
+              <use xlink:href="#image0_123_11" transform="scale(0.0104167)" />
+            </pattern>
+            <image id="image0_123_11" width="96" height="96" preserveAspectRatio="none"
+              xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAACXBIWXMAAAsTAAALEwEAmpwYAAAESElEQVR4nO2dT6hVVRTGl4lRA59kEZSj/hlJQYNqmhPLnIQ8lMJJNCw1iohMgggi/0ClIDiIhAaiUmCoSegkaBBRGBEoQg16UQMzUkmotF9s3ILvve65e9+9z11777d+cIfrnm9/695zvnP22eeIGIZhGIZhGIZh9AQwH3gK+AT4BbhEOVzymg4Ca4HrpCWAZcC31MMJ4D5pAeBh4Bz18QfwkNQMsBj4mXr5CbhJagXYRv1skRoBFla665nJeWBCagN4gXZ4XmoCmAecoh1OVxVNgVUBg3pOCgHYEKD3cakF4GhN+1WuHK9c7OzisNQAcA9wechg3pHCAHYM0fwvsFRKB9hZ40CAuwN+OO9KA9HzkBQKcKSmXecsgI0M5zEpFGBlgP71UnH0dHFunhQKV8ZwsspIGhg9iz+hodZIWlv0bCqSBkbPshNEfCS9V0qh1uiZGEnfk4qiZ1l/2QCAT6vYpQZGz/IOWkMAnig+kkZEz/JiWwuRNDB6lnniki+SrhQtWomeiZH0iBQcPctICi1G0sDoWU5W7jeS7igxeur8NedCJA2MnnoHJ51IuiHnBpcCHzdyW4k2zsOP3DEz5uB6Vlt1g/wW1AT/yzf64UBIA2y30x9nrQG6/B7SgOPKIlvmWEgDXtFW2TAvhzTgQW2VDfNA6GVYt17KyMuvwXeEAB9m3rgBe4LM9w1Yp622QZ6OacAtAVcAjXCcl7cGN8A34Rv6Xfw26a+qus/qyAUd2vWxfB1lvm/A2z2JcYNfPGBF5VQF9aPw1igNWN6TmMmOba6poH4UHh2lAdcDF3oQs7BjmxMV1MfiJmsWRDfACzqUW03ANouuH4GDMZ7PFLM+txptAyWxfgRGX4zoJ2eyom2gJNaPwF0xnv+foB9yqtE2UBLrI/kxxutBgnbnVKRtoCTWR7IrxutBgtxJSja0DZTE+kiejPG6K5r9nUuRtoGSWB/BP8CiGK+7RH2RS5W2gZJYH8HnMR4PE/V6LlXaBkpifQSbYzweJuqRXKq0DZTE+gjyPe7MLUIAzuRQpW2gJNYHcib7wg1gfw5lqQaIcn0geyU3wLM5lKUaIMr1gTwjuQGW+Hv+k0g1QJTrA3Ae3S59AHyfqi7VAFGuD+A76Qv3oKVUdakGiHJ9ANulL9x63wwCuyZEFlVQP4wVObweJPBG4GKiwNUd3z9ZQX0XzpsbpE+AzxJFnuqYFD9dQX0XR/v0/qrQl0hnyk+AT/jPZOTgtesH8eI4GnB/BqGtsqz3BvgmuHtrjOlMjcV834APZmzcgPfH2QD3KhJjOmvG2YCb7ebdWe+gmZWs+m7CV9M1zGm+HKv5vgGvaY+6IF7VaMCSDGfFLfAncNvYG+CbsFl79AWwScX8a6Yq9zF32av+PDzfhDdz3jtUAX8Bb6ibfy3Anf61VSd6WlegzQU/tq3AHdp+G4ZhGIZhGIZhGIZhGFId/wHoK4ITn6iuiwAAAABJRU5ErkJggg==" />
+          </defs>
+        </svg>
+      </div>
+
+      <h1 class="text-4xl lg:text-5xl font-bold mb-6">Catálogo de Produtos</h1>
+
+      <div>
+        <p class="text-xl text-white/90">Descubra nossa coleção completa de armações premium com</p>
+        <p class="text-xl text-white/90">descontos exclusivos para universitários</p>
+      </div>
+    </section>
+
+    <!-- Filters -->
+    <div class="sticky top-0 z-10 py-8 bg-white border-b shadow-sm">
+      <div
+        class="container mx-auto px-4 lg:px-8 flex flex-col md:flex-row gap-4 items-center justify-between max-w-[1280px]">
+        <div class="flex flex-col md:flex-row gap-4 items-center flex-1">
+          <input id="searchInput" type="text" placeholder="Buscar produtos..."
+            class="max-w-md pl-10 pr-4 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
+
+          <select id="categorySelect"
+            class="cursor-pointer bg-white border border-gray-300 rounded-lg px-3 py-2 w-full md:w-64 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+            <option value="all">Todas as Categorias</option>
+            <option value="Óculos de Sol">Óculos de Sol</option>
+            <option value="Óculos de Grau">Óculos de Grau</option>
+            <option value="Óculos de Leitura">Óculos de Leitura</option>
+            <option value="Óculos Esportivos">Óculos Esportivos</option>
+          </select>
+        </div>
+
+        <div id="productCount" class="text-sm text-gray-500"></div>
+      </div>
+    </div>
+
+    <!-- Products Section -->
+    <section class="flex flex-col flex-1 py-16">
+      <div class="container mx-auto px-4 lg:px-8 max-w-[1280px]">
+        <div id="productsGrid" class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
+        <div id="noProducts" class="text-center py-12 text-gray-500 hidden col-span-full">
+          Nenhum produto encontrado com os filtros selecionados.
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+  </div>
+
+  <!-- Importação para Components -->
+  <script src="../components/elements/header/script.js" defer></script>
+  <script src="../components/elements/footer/script.js" defer></script>
+  <script src="../components/cards/productCard/script.js" defer></script>
+  <script src="../components/cards/serviceCard/script.js" defer></script>
+
+  <!-- Main Script -->
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      // #region Functions for internal control.
+      const filterProducts = () => {
+        const productCount = document.getElementById("productCount");
+        const noProducts = document.getElementById("noProducts");
+
+        const searchTerm = searchInput.value.toLowerCase();
+        const selectedCategory = categorySelect.value;
+
+        const filtered = products.filter(
+          (p) =>
+            p.name.toLowerCase().includes(searchTerm) &&
+            (selectedCategory === "all" || p.category === selectedCategory)
+        );
+
+        productsGrid.innerHTML = "";
+
+        if (filtered.length === 0) {
+          noProducts.classList.remove("hidden");
+        } else {
+          noProducts.classList.add("hidden");
+        }
+
+        productCount.textContent = `${filtered.length} produto(s) encontrado(s)`;
+
+        filtered.forEach((product) => {
+          productsGrid.appendChild(productCardComponent(product));
+        });
+      }
+      // #endregion
+
+      // #region Constants for mook data (temporary)
+      const products = [
+        {
+          "id": 1,
+          "name": "Ray-Ban Classic Aviator",
+          "category": "Óculos de Sol",
+          "price": "R$ 299",
+          "originalPrice": "R$ 399",
+          "discount": "25% OFF",
+          "rating": 4.8,
+          "reviews": 124,
+          "image": "https://via.placeholder.com/300x200?text=Ray-Ban+Aviator",
+          "features": ["Proteção UV 400", "Lentes polarizadas", "Armação resistente"],
+          "colors": ["Dourado", "Preto", "Prata"]
+        },
+        {
+          "id": 2,
+          "name": "Academic Pro Vision",
+          "category": "Óculos de Grau",
+          "price": "R$ 189",
+          "originalPrice": "R$ 270",
+          "discount": "30% OFF",
+          "rating": 4.9,
+          "reviews": 89,
+          "image": "https://via.placeholder.com/300x200?text=Academic+Pro",
+          "features": ["Anti-reflexo", "Lente blue light", "Armação flexível"],
+          "colors": ["Preto", "Marrom", "Azul"]
+        },
+        {
+          "id": 3,
+          "name": "Oakley Holbrook Sunglasses",
+          "category": "Óculos de Sol",
+          "price": "R$ 349",
+          "originalPrice": "R$ 450",
+          "discount": "22% OFF",
+          "rating": 4.7,
+          "reviews": 156,
+          "image": "https://via.placeholder.com/300x200?text=Oakley+Holbrook",
+          "features": ["Proteção UV total", "Lentes Prizm", "Armação leve"],
+          "colors": ["Verde", "Cinza", "Tortoise"]
+        },
+        {
+          "id": 4,
+          "name": "Visionary Slim Frame",
+          "category": "Óculos de Grau",
+          "price": "R$ 159",
+          "originalPrice": "R$ 220",
+          "discount": "28% OFF",
+          "rating": 4.6,
+          "reviews": 67,
+          "image": "https://via.placeholder.com/300x200?text=Visionary+Slim",
+          "features": ["Lentes antirrisco", "Proteção contra luz azul", "Design minimalista"],
+          "colors": ["Transparente", "Preto fosco", "Rose gold"]
+        },
+        {
+          "id": 5,
+          "name": "Prada Linea Rossa",
+          "category": "Óculos de Sol",
+          "price": "R$ 499",
+          "originalPrice": "R$ 650",
+          "discount": "23% OFF",
+          "rating": 4.9,
+          "reviews": 203,
+          "image": "https://via.placeholder.com/300x200?text=Prada+Linea",
+          "features": ["Lentes fotocromáticas", "Armação de titânio", "Estilo premium"],
+          "colors": ["Preto", "Dourado", "Branco"]
+        },
+        {
+          "id": 6,
+          "name": "EduSmart Reading Glasses",
+          "category": "Óculos de Grau",
+          "price": "R$ 129",
+          "originalPrice": "R$ 180",
+          "discount": "28% OFF",
+          "rating": 4.5,
+          "reviews": 45,
+          "image": "https://via.placeholder.com/300x200?text=EduSmart+Reading",
+          "features": ["Lentes bifocais", "Armação ergonômica", "Anti-fadiga visual"],
+          "colors": ["Marrom", "Azul marinho", "Cinza"]
+        },
+        {
+          "id": 7,
+          "name": "Gucci GG Aviator",
+          "category": "Óculos de Sol",
+          "price": "R$ 599",
+          "originalPrice": "R$ 750",
+          "discount": "20% OFF",
+          "rating": 4.8,
+          "reviews": 178,
+          "image": "https://via.placeholder.com/300x200?text=Gucci+GG",
+          "features": ["Proteção UV 100%", "Lentes espelhadas", "Detalhes em logo"],
+          "colors": ["Ouro rosé", "Preto", "Prata"]
+        },
+        {
+          "id": 8,
+          "name": "Focus Elite Bifocal",
+          "category": "Óculos de Grau",
+          "price": "R$ 219",
+          "originalPrice": "R$ 310",
+          "discount": "29% OFF",
+          "rating": 4.7,
+          "reviews": 112,
+          "image": "https://via.placeholder.com/300x200?text=Focus+Elite",
+          "features": ["Lentes progressivas", "Armação ajustável", "Tratamento antirreflexo"],
+          "colors": ["Preto", "Tartaruga", "Verde"]
+        },
+        {
+          "id": 8,
+          "name": "Focus Elite Bifocal",
+          "category": "Óculos de Grau",
+          "price": "R$ 219",
+          "originalPrice": "R$ 310",
+          "discount": "29% OFF",
+          "rating": 4.7,
+          "reviews": 112,
+          "image": "https://via.placeholder.com/300x200?text=Focus+Elite",
+          "features": ["Lentes progressivas", "Armação ajustável", "Tratamento antirreflexo"],
+          "colors": ["Preto", "Tartaruga", "Verde"]
+        },
+        {
+          "id": 8,
+          "name": "Focus Elite Bifocal",
+          "category": "Óculos de Grau",
+          "price": "R$ 219",
+          "originalPrice": "R$ 310",
+          "discount": "29% OFF",
+          "rating": 4.7,
+          "reviews": 112,
+          "image": "https://via.placeholder.com/300x200?text=Focus+Elite",
+          "features": ["Lentes progressivas", "Armação ajustável", "Tratamento antirreflexo"],
+          "colors": ["Preto", "Tartaruga", "Verde"]
+        },
+        {
+          "id": 8,
+          "name": "Focus Elite Bifocal",
+          "category": "Óculos de Grau",
+          "price": "R$ 219",
+          "originalPrice": "R$ 310",
+          "discount": "29% OFF",
+          "rating": 4.7,
+          "reviews": 112,
+          "image": "https://via.placeholder.com/300x200?text=Focus+Elite",
+          "features": ["Lentes progressivas", "Armação ajustável", "Tratamento antirreflexo"],
+          "colors": ["Preto", "Tartaruga", "Verde"]
+        }
+      ]
+      // #endregion
+
+      // #region Render Components
+      document.getElementById("header").appendChild(headerElement());
+      document.getElementById("footer").appendChild(footerElement());
+
+      const searchInput = document.getElementById("searchInput");
+      searchInput.addEventListener("input", filterProducts);
+
+      const categorySelect = document.getElementById("categorySelect");
+      categorySelect.addEventListener("change", filterProducts);
+
+      const productsGrid = document.getElementById("productsGrid");
+      products.forEach((product) => productsGrid.appendChild(productCardComponent(product)));
+      // #endregion
+    });
+  </script>
+</body>
+
+</html>
