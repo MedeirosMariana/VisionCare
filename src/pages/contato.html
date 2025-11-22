@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport">
+  <title>Contato - Vision Care</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="flex flex-col w-[100%] min-h-screen p-0 bg-white">
+  <div id="header"></div>
+
+  <!-- Hero Section -->
+  <section
+    class="flex flex-col h-[300px] pt-[50px] items-center justify-center bg-gradient-to-r from-blue-600 to-green-600 text-white text-center">
+    <div class="p-4 bg-white/10 rounded-full mb-5">
+      <svg class="w-14 h-14 stroke-white" fill="none" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z">
+        </path>
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 
+         9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+        </path>
+      </svg>
+    </div>
+
+
+    <h1 class="text-4xl lg:text-5xl font-bold mb-6">Contate-nos</h1>
+
+    <div>
+      <p class="text-xl text-white/90">Estamos prontos para atender você! Tire suas dúvidas.</p>
+      <p class="text-xl text-white/90">Nossa equipe especializada está à sua disposição.</p>
+    </div>
+  </section>
+
+  <div class="flex flex-1 flex-col items-center">
+    <section id="contact" class="flex flex-wrap justify-center gap-[40px] my-20 max-w-[1280px]">
+      <!-- Contact Form -->
+      <div class="flex flex-col flex-1">
+        <form id="contactForm"
+          class="flex flex-col min-w-[650px] justify-center space-y-8 shadow-lg p-8 border-1 rounded-lg">
+          <div class="space-y-2">
+            <label for="name" class="block text-sm font-medium text-gray-900">Nome Completo</label>
+            <input id="name" name="name" type="text" placeholder="Digite seu nome" required
+              class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-4">
+            <div class="space-y-2">
+              <label for="email" class="block text-sm font-medium text-gray-900">E-mail</label>
+              <input id="email" name="email" type="email" placeholder="seu@email.com" required
+                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
+            </div>
+            <div class="space-y-2">
+              <label for="phone" class="block text-sm font-medium text-gray-900">Telefone</label>
+              <input id="phone" name="phone" type="tel" placeholder="(11) 99999-9999" required
+                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            <label for="university" class="block text-sm font-medium text-gray-900">Universidade</label>
+            <input id="university" name="university" type="text" placeholder="Nome da sua universidade"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
+          </div>
+
+          <div class="space-y-2">
+            <label for="message" class="block text-sm font-medium text-gray-900">Mensagem</label>
+            <textarea id="message" name="message" placeholder="Como podemos te ajudar?" rows="5"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"></textarea>
+          </div>
+
+          <button type="submit"
+            class="w-full bg-gradient-to-r from-blue-600 to-green-600 text-white px-6 py-3 rounded-md font-medium hover:from-blue-700 hover:to-blue-800 transition-all duration-200 flex items-center justify-center space-x-2">
+            <span>Enviar Mensagem</span>
+          </button>
+        </form>
+      </div>
+      <!-- </div> -->
+
+      <!-- Contact Info -->
+      <div class="flex flex-col gap-[10px]">
+        <!-- Address Card -->
+        <div class="flex items-start min-w-[400px] space-x-4 p-6 bg-gradient-to-br from-gray-50 to-white rounded-lg shadow-lg">
+          <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
+          </div>
+
+          <div>
+            <h4 class="font-semibold text-gray-900 mb-2">Endereço</h4>
+            <p class="text-gray-600">
+              Rua dos Universitários, 123<br />
+              Centro, São Paulo - SP<br />
+              CEP: 01234-567
+            </p>
+          </div>
+        </div>
+
+        <!-- Phone Card -->
+        <div class="flex items-start min-w-[400px] space-x-4 p-6 bg-gradient-to-br from-gray-50 to-white rounded-lg shadow-lg">
+          <div class="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center flex-shrink-0">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+              </path>
+            </svg>
+          </div>
+
+          <div>
+            <h4 class="font-semibold text-gray-900 mb-2">Telefone</h4>
+            <p class="text-gray-600">
+              (11) 3456-7890<br />
+              (11) 99876-5432<br />
+              <span class="text-sm">WhatsApp disponível</span>
+            </p>
+          </div>
+        </div>
+
+        <!-- Email Card -->
+        <div class="flex items-start min-w-[400px] space-x-4 p-6 bg-gradient-to-br from-gray-50 to-white rounded-lg shadow-lg">
+          <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+              </path>
+            </svg>
+          </div>
+
+          <div>
+            <h4 class="font-semibold text-gray-900 mb-2">E-mail</h4>
+            <p class="text-gray-600">
+              contato@universityvision.com<br />
+              vendas@universityvision.com<br />
+              <span class="text-sm">Resposta em até 24h</span>
+            </p>
+          </div>
+        </div>
+
+        <!-- Hours Card -->
+        <div class="flex items-start min-w-[400px] space-x-4 p-6 bg-gradient-to-br from-gray-50 to-white rounded-lg shadow-lg">
+          <div class="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center flex-shrink-0">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12,6 12,12 16,14"></polyline>
+            </svg>
+          </div>
+
+          <div>
+            <h4 class="font-semibold text-gray-900 mb-2">Horário de Funcionamento</h4>
+            <div class="space-y-1 text-gray-600">
+              <p>Segunda a Sexta: 8h às 20h</p>
+              <p>Sábados: 8h às 18h</p>
+              <p>Domingos: 10h às 16h</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div id="footer"></div>
+
+  <!-- Importation script to Components  -->
+  <script src="../components/elements/footer/script.js" defer></script>
+  <script src="../components/elements/header/script.js" defer></script>
+
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      // #region Render Components
+      document.getElementById("header").appendChild(headerElement());
+      document.getElementById("footer").appendChild(footerElement());
+      // #endregion
+    })
+  </script>
+</body>
+
+</html>
