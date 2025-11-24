@@ -1,7 +1,9 @@
 package com.project.visioncare.controllers;
 
+import com.project.visioncare.dtos.CartRecordDto;
 import com.project.visioncare.models.CartModel;
 import com.project.visioncare.services.CartService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,13 +30,13 @@ public class CartController {
     }
 
     @PostMapping("/cart")
-    public ResponseEntity<UUID> create(@RequestBody CartModel model) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(cartService.create(model));
+    public ResponseEntity<UUID> create(@RequestBody @Valid CartRecordDto dto) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(cartService.create(dto));
     }
 
     @PutMapping("/cart/{id}")
-    public ResponseEntity<UUID> update(@PathVariable UUID id, @RequestBody CartModel model) {
-        return ResponseEntity.ok(cartService.update(id, model));
+    public ResponseEntity<UUID> update(@PathVariable UUID id, @RequestBody @Valid CartRecordDto dto) {
+        return ResponseEntity.ok(cartService.update(id, dto));
     }
 
     @DeleteMapping("/cart/{id}")

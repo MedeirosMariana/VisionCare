@@ -1,8 +1,10 @@
 package com.project.visioncare.services;
 
+import com.project.visioncare.dtos.UniversityRecordDto;
 import com.project.visioncare.exceptions.NotFoundException;
 import com.project.visioncare.models.UniversityModel;
 import com.project.visioncare.repositories.UniversityRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,32 +15,40 @@ import java.util.UUID;
 public class UniversityService {
 
     @Autowired
-    UniversityRepository universityRepository;
+    private UniversityRepository universityRepository;
 
-    private static final String notFoundMessage = "University not found";
+    private final String notFoundMessage = "University not found";
 
     public List<UniversityModel> listAll() {
         return universityRepository.findAll();
     }
 
     public UniversityModel getById(UUID id) {
-        return universityRepository.findById(id)
+        return universityRepository
+                .findById(id)
                 .orElseThrow(() -> new NotFoundException(notFoundMessage));
     }
 
-    public UUID create(UniversityModel model) {
-        model.setId(null);
-        return universityRepository.save(model).getId();
+    public UUID create(UniversityRecordDto dto) {
+        var m = new UniversityModel();
+        BeanUtils.copyProperties(dto, m);
+        return universityRepository.save(m).getId();
     }
 
-    public UUID update(UUID id, UniversityModel model) {
-        getById(id);
-        model.setId(id);
-        return universityRepository.save(model).getId();
+    public UUID update(UUID id, UniversityRecordDto dto) {
+        var m = universityRepository
+                .findById(id)
+                .orElseThrow(() -> new NotFoundException(notFoundMessage));
+
+        BeanUtils.copyProperties(dto, m);
+        return universityRepository.save(m).getId();
     }
 
     public void delete(UUID id) {
-        var existing = getById(id);
-        universityRepository.delete(existing);
+        var found = universityRepository.findById(id);
+
+        if (found.isEmpty()) throw new NotFoundException(notFoundMessage);
+
+        universityRepository.delete(found.get());
     }
 }

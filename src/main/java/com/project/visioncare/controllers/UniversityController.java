@@ -1,7 +1,9 @@
 package com.project.visioncare.controllers;
 
+import com.project.visioncare.dtos.UniversityRecordDto;
 import com.project.visioncare.models.UniversityModel;
 import com.project.visioncare.services.UniversityService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,13 +30,13 @@ public class UniversityController {
     }
 
     @PostMapping("/university")
-    public ResponseEntity<UUID> create(@RequestBody UniversityModel model) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(universityService.create(model));
+    public ResponseEntity<UUID> create(@RequestBody @Valid UniversityRecordDto dto) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(universityService.create(dto));
     }
 
     @PutMapping("/university/{id}")
-    public ResponseEntity<UUID> update(@PathVariable UUID id, @RequestBody UniversityModel model) {
-        return ResponseEntity.ok(universityService.update(id, model));
+    public ResponseEntity<UUID> update(@PathVariable UUID id, @RequestBody @Valid UniversityRecordDto dto) {
+        return ResponseEntity.ok(universityService.update(id, dto));
     }
 
     @DeleteMapping("/university/{id}")

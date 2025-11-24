@@ -1,7 +1,9 @@
 package com.project.visioncare.controllers;
 
+import com.project.visioncare.dtos.AppointmentRecordDto;
 import com.project.visioncare.models.AppointmentModel;
 import com.project.visioncare.services.AppointmentService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,13 +30,13 @@ public class AppointmentController {
     }
 
     @PostMapping("/appointment")
-    public ResponseEntity<UUID> create(@RequestBody AppointmentModel model) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(appointmentService.create(model));
+    public ResponseEntity<UUID> create(@RequestBody @Valid AppointmentRecordDto dto) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(appointmentService.create(dto));
     }
 
     @PutMapping("/appointment/{id}")
-    public ResponseEntity<UUID> update(@PathVariable UUID id, @RequestBody AppointmentModel model) {
-        return ResponseEntity.ok(appointmentService.update(id, model));
+    public ResponseEntity<UUID> update(@PathVariable UUID id, @RequestBody @Valid AppointmentRecordDto dto) {
+        return ResponseEntity.ok(appointmentService.update(id, dto));
     }
 
     @DeleteMapping("/appointment/{id}")

@@ -1,7 +1,9 @@
 package com.project.visioncare.controllers;
 
+import com.project.visioncare.dtos.ServiceRecordDto;
 import com.project.visioncare.models.ServiceModel;
 import com.project.visioncare.services.ServiceModelService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,13 +30,13 @@ public class ServiceController {
     }
 
     @PostMapping("/service")
-    public ResponseEntity<UUID> create(@RequestBody ServiceModel model) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(service.create(model));
+    public ResponseEntity<UUID> create(@RequestBody @Valid ServiceRecordDto dto) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.create(dto));
     }
 
     @PutMapping("/service/{id}")
-    public ResponseEntity<UUID> update(@PathVariable UUID id, @RequestBody ServiceModel model) {
-        return ResponseEntity.ok(service.update(id, model));
+    public ResponseEntity<UUID> update(@PathVariable UUID id, @RequestBody @Valid ServiceRecordDto dto) {
+        return ResponseEntity.ok(service.update(id, dto));
     }
 
     @DeleteMapping("/service/{id}")

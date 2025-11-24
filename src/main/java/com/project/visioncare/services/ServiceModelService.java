@@ -1,8 +1,10 @@
 package com.project.visioncare.services;
 
+import com.project.visioncare.dtos.ServiceRecordDto;
 import com.project.visioncare.exceptions.NotFoundException;
 import com.project.visioncare.models.ServiceModel;
 import com.project.visioncare.repositories.ServiceRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,32 +15,40 @@ import java.util.UUID;
 public class ServiceModelService {
 
     @Autowired
-    ServiceRepository serviceRepository;
+    private ServiceRepository serviceRepository;
 
-    private static final String notFoundMessage = "Service not found";
+    private final String notFoundMessage = "Service not found";
 
     public List<ServiceModel> listAll() {
         return serviceRepository.findAll();
     }
 
     public ServiceModel getById(UUID id) {
-        return serviceRepository.findById(id)
+        return serviceRepository
+                .findById(id)
                 .orElseThrow(() -> new NotFoundException(notFoundMessage));
     }
 
-    public UUID create(ServiceModel model) {
-        model.setId(null);
+    public UUID create(ServiceRecordDto dto) {
+        var model = new ServiceModel();
+        BeanUtils.copyProperties(dto, model);
         return serviceRepository.save(model).getId();
     }
 
-    public UUID update(UUID id, ServiceModel model) {
-        getById(id);
-        model.setId(id);
+    public UUID update(UUID id, ServiceRecordDto dto) {
+        var model = serviceRepository
+                .findById(id)
+                .orElseThrow(() -> new NotFoundException(notFoundMessage));
+
+        BeanUtils.copyProperties(dto, model);
         return serviceRepository.save(model).getId();
     }
 
     public void delete(UUID id) {
-        var existing = getById(id);
-        serviceRepository.delete(existing);
+        var found = serviceRepository.findById(id);
+
+        if (found.isEmpty()) throw new NotFoundException(notFoundMessage);
+
+        serviceRepository.delete(found.get());
     }
 }

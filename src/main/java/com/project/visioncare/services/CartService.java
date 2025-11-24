@@ -1,8 +1,10 @@
 package com.project.visioncare.services;
 
+import com.project.visioncare.dtos.CartRecordDto;
 import com.project.visioncare.exceptions.NotFoundException;
 import com.project.visioncare.models.CartModel;
 import com.project.visioncare.repositories.CartRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,32 +15,40 @@ import java.util.UUID;
 public class CartService {
 
     @Autowired
-    CartRepository cartRepository;
+    private CartRepository cartRepository;
 
-    private static final String notFoundMessage = "Cart not found";
+    private final String notFoundMessage = "Cart not found";
 
     public List<CartModel> listAll() {
         return cartRepository.findAll();
     }
 
     public CartModel getById(UUID id) {
-        return cartRepository.findById(id)
+        return cartRepository
+                .findById(id)
                 .orElseThrow(() -> new NotFoundException(notFoundMessage));
     }
 
-    public UUID create(CartModel model) {
-        model.setId(null);
+    public UUID create(CartRecordDto dto) {
+        var model = new CartModel();
+        BeanUtils.copyProperties(dto, model);
         return cartRepository.save(model).getId();
     }
 
-    public UUID update(UUID id, CartModel model) {
-        var exists = getById(id);
-        model.setId(id);
+    public UUID update(UUID id, CartRecordDto dto) {
+        var model = cartRepository
+                .findById(id)
+                .orElseThrow(() -> new NotFoundException(notFoundMessage));
+
+        BeanUtils.copyProperties(dto, model);
         return cartRepository.save(model).getId();
     }
 
     public void delete(UUID id) {
-        var exists = getById(id);
-        cartRepository.delete(exists);
+        var found = cartRepository.findById(id);
+
+        if (found.isEmpty()) throw new NotFoundException(notFoundMessage);
+
+        cartRepository.delete(found.get());
     }
 }
