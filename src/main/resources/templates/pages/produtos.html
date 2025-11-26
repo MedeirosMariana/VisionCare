@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org" th:inline="javascript">
 
 <head>
   <meta charset="UTF-8" />
@@ -7,6 +7,23 @@
   <title>Catálogo de Produtos - Vision Care</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lucide/dist/lucide.min.css" />
+
+  <!-- Importação para Components -->
+  <script th:src="@{/js/components/header.js}" defer></script>
+  <script th:src="@{/js/components/footer.js}" defer></script>
+  <script th:src="@{/js/components/productCard.js}" defer></script>
+
+  <!-- Main Script -->
+  <script>
+     window.addEventListener("DOMContentLoaded", () => {
+        document.getElementById("header").appendChild(headerElement());
+        document.getElementById("footer").appendChild(footerElement());
+
+        const productsGrid = document.getElementById("productsGrid");
+        const products = /*[[${products}]]*/ [];
+        products.forEach((product) => productsGrid.appendChild(productCardComponent(product)));
+     });
+  </script>
 </head>
 
 <body class="bg-gray-50">
@@ -64,8 +81,8 @@
     <!-- Products Section -->
     <section class="flex flex-col flex-1 py-16">
       <div class="container mx-auto px-4 lg:px-8 max-w-[1280px]">
-        <div id="productsGrid" class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
-        <div id="noProducts" class="text-center py-12 text-gray-500 hidden col-span-full">
+          <div id="productsGrid" class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
+          <div id="noProducts" class="text-center py-12 text-gray-500 hidden col-span-full">
           Nenhum produto encontrado com os filtros selecionados.
         </div>
       </div>
@@ -74,209 +91,6 @@
     <!-- Footer -->
     <div id="footer"></div>
   </div>
-
-  <!-- Importação para Components -->
-  <script src="../components/elements/header/script.js" defer></script>
-  <script src="../components/elements/footer/script.js" defer></script>
-  <script src="../components/cards/productCard/script.js" defer></script>
-  <script src="../components/cards/serviceCard/script.js" defer></script>
-
-  <!-- Main Script -->
-  <script>
-    window.addEventListener("DOMContentLoaded", () => {
-      // #region Functions for internal control.
-      const filterProducts = () => {
-        const productCount = document.getElementById("productCount");
-        const noProducts = document.getElementById("noProducts");
-
-        const searchTerm = searchInput.value.toLowerCase();
-        const selectedCategory = categorySelect.value;
-
-        const filtered = products.filter(
-          (p) =>
-            p.name.toLowerCase().includes(searchTerm) &&
-            (selectedCategory === "all" || p.category === selectedCategory)
-        );
-
-        productsGrid.innerHTML = "";
-
-        if (filtered.length === 0) {
-          noProducts.classList.remove("hidden");
-        } else {
-          noProducts.classList.add("hidden");
-        }
-
-        productCount.textContent = `${filtered.length} produto(s) encontrado(s)`;
-
-        filtered.forEach((product) => {
-          productsGrid.appendChild(productCardComponent(product));
-        });
-      }
-      // #endregion
-
-      // #region Constants for mook data (temporary)
-      const products = [
-        {
-          "id": 1,
-          "name": "Ray-Ban Classic Aviator",
-          "category": "Óculos de Sol",
-          "price": "R$ 299",
-          "originalPrice": "R$ 399",
-          "discount": "25% OFF",
-          "rating": 4.8,
-          "reviews": 124,
-          "image": "https://via.placeholder.com/300x200?text=Ray-Ban+Aviator",
-          "features": ["Proteção UV 400", "Lentes polarizadas", "Armação resistente"],
-          "colors": ["Dourado", "Preto", "Prata"]
-        },
-        {
-          "id": 2,
-          "name": "Academic Pro Vision",
-          "category": "Óculos de Grau",
-          "price": "R$ 189",
-          "originalPrice": "R$ 270",
-          "discount": "30% OFF",
-          "rating": 4.9,
-          "reviews": 89,
-          "image": "https://via.placeholder.com/300x200?text=Academic+Pro",
-          "features": ["Anti-reflexo", "Lente blue light", "Armação flexível"],
-          "colors": ["Preto", "Marrom", "Azul"]
-        },
-        {
-          "id": 3,
-          "name": "Oakley Holbrook Sunglasses",
-          "category": "Óculos de Sol",
-          "price": "R$ 349",
-          "originalPrice": "R$ 450",
-          "discount": "22% OFF",
-          "rating": 4.7,
-          "reviews": 156,
-          "image": "https://via.placeholder.com/300x200?text=Oakley+Holbrook",
-          "features": ["Proteção UV total", "Lentes Prizm", "Armação leve"],
-          "colors": ["Verde", "Cinza", "Tortoise"]
-        },
-        {
-          "id": 4,
-          "name": "Visionary Slim Frame",
-          "category": "Óculos de Grau",
-          "price": "R$ 159",
-          "originalPrice": "R$ 220",
-          "discount": "28% OFF",
-          "rating": 4.6,
-          "reviews": 67,
-          "image": "https://via.placeholder.com/300x200?text=Visionary+Slim",
-          "features": ["Lentes antirrisco", "Proteção contra luz azul", "Design minimalista"],
-          "colors": ["Transparente", "Preto fosco", "Rose gold"]
-        },
-        {
-          "id": 5,
-          "name": "Prada Linea Rossa",
-          "category": "Óculos de Sol",
-          "price": "R$ 499",
-          "originalPrice": "R$ 650",
-          "discount": "23% OFF",
-          "rating": 4.9,
-          "reviews": 203,
-          "image": "https://via.placeholder.com/300x200?text=Prada+Linea",
-          "features": ["Lentes fotocromáticas", "Armação de titânio", "Estilo premium"],
-          "colors": ["Preto", "Dourado", "Branco"]
-        },
-        {
-          "id": 6,
-          "name": "EduSmart Reading Glasses",
-          "category": "Óculos de Grau",
-          "price": "R$ 129",
-          "originalPrice": "R$ 180",
-          "discount": "28% OFF",
-          "rating": 4.5,
-          "reviews": 45,
-          "image": "https://via.placeholder.com/300x200?text=EduSmart+Reading",
-          "features": ["Lentes bifocais", "Armação ergonômica", "Anti-fadiga visual"],
-          "colors": ["Marrom", "Azul marinho", "Cinza"]
-        },
-        {
-          "id": 7,
-          "name": "Gucci GG Aviator",
-          "category": "Óculos de Sol",
-          "price": "R$ 599",
-          "originalPrice": "R$ 750",
-          "discount": "20% OFF",
-          "rating": 4.8,
-          "reviews": 178,
-          "image": "https://via.placeholder.com/300x200?text=Gucci+GG",
-          "features": ["Proteção UV 100%", "Lentes espelhadas", "Detalhes em logo"],
-          "colors": ["Ouro rosé", "Preto", "Prata"]
-        },
-        {
-          "id": 8,
-          "name": "Focus Elite Bifocal",
-          "category": "Óculos de Grau",
-          "price": "R$ 219",
-          "originalPrice": "R$ 310",
-          "discount": "29% OFF",
-          "rating": 4.7,
-          "reviews": 112,
-          "image": "https://via.placeholder.com/300x200?text=Focus+Elite",
-          "features": ["Lentes progressivas", "Armação ajustável", "Tratamento antirreflexo"],
-          "colors": ["Preto", "Tartaruga", "Verde"]
-        },
-        {
-          "id": 8,
-          "name": "Focus Elite Bifocal",
-          "category": "Óculos de Grau",
-          "price": "R$ 219",
-          "originalPrice": "R$ 310",
-          "discount": "29% OFF",
-          "rating": 4.7,
-          "reviews": 112,
-          "image": "https://via.placeholder.com/300x200?text=Focus+Elite",
-          "features": ["Lentes progressivas", "Armação ajustável", "Tratamento antirreflexo"],
-          "colors": ["Preto", "Tartaruga", "Verde"]
-        },
-        {
-          "id": 8,
-          "name": "Focus Elite Bifocal",
-          "category": "Óculos de Grau",
-          "price": "R$ 219",
-          "originalPrice": "R$ 310",
-          "discount": "29% OFF",
-          "rating": 4.7,
-          "reviews": 112,
-          "image": "https://via.placeholder.com/300x200?text=Focus+Elite",
-          "features": ["Lentes progressivas", "Armação ajustável", "Tratamento antirreflexo"],
-          "colors": ["Preto", "Tartaruga", "Verde"]
-        },
-        {
-          "id": 8,
-          "name": "Focus Elite Bifocal",
-          "category": "Óculos de Grau",
-          "price": "R$ 219",
-          "originalPrice": "R$ 310",
-          "discount": "29% OFF",
-          "rating": 4.7,
-          "reviews": 112,
-          "image": "https://via.placeholder.com/300x200?text=Focus+Elite",
-          "features": ["Lentes progressivas", "Armação ajustável", "Tratamento antirreflexo"],
-          "colors": ["Preto", "Tartaruga", "Verde"]
-        }
-      ]
-      // #endregion
-
-      // #region Render Components
-      document.getElementById("header").appendChild(headerElement());
-      document.getElementById("footer").appendChild(footerElement());
-
-      const searchInput = document.getElementById("searchInput");
-      searchInput.addEventListener("input", filterProducts);
-
-      const categorySelect = document.getElementById("categorySelect");
-      categorySelect.addEventListener("change", filterProducts);
-
-      const productsGrid = document.getElementById("productsGrid");
-      products.forEach((product) => productsGrid.appendChild(productCardComponent(product)));
-      // #endregion
-    });
-  </script>
 </body>
 
 </html>
