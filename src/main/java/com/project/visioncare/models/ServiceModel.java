@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -25,9 +26,18 @@ public class ServiceModel implements Serializable {
     @Column(name = "ds_service", length = 500)
     private String description;
 
-    @Column(name = "service_img", length = 255)
+    @Column(name = "service_img", length = 600)
     private String image;
 
     @Column(name = "price_vl", precision = 10, scale = 2)
     private BigDecimal price;
+
+    @Column(name = "service_duration")
+    private String duration;
+
+    @Column(name = "service_badge")
+    private String badge;
+
+    @ElementCollection
+    private List<String> features;
 }

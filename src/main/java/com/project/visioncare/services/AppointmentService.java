@@ -3,6 +3,7 @@ package com.project.visioncare.services;
 import com.project.visioncare.dtos.AppointmentRecordDto;
 import com.project.visioncare.exceptions.NotFoundException;
 import com.project.visioncare.models.AppointmentModel;
+import com.project.visioncare.models.UniversityModel;
 import com.project.visioncare.repositories.AppointmentRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +30,19 @@ public class AppointmentService {
                 .orElseThrow(() -> new NotFoundException(notFoundMessage));
     }
 
-    public UUID create(AppointmentRecordDto dto) {
+    public UUID create(AppointmentRecordDto dto, UniversityService universityService) {
         var model = new AppointmentModel();
-        BeanUtils.copyProperties(dto, model);
+
+        BeanUtils.copyProperties(dto, model, "universityId");
+
+        UniversityModel university = universityService.getById(dto.universityId());
+
+        if (university == null) {
+            throw new NotFoundException("Universidade não encontrada.");
+        }
+
+        model.setUniversity(university);
+
         return appointmentRepository.save(model).getId();
     }
 

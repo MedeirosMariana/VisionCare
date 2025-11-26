@@ -1,8 +1,9 @@
-package com.project.visioncare.controllers;
+package com.project.visioncare.controllers.api;
 
 import com.project.visioncare.dtos.AppointmentRecordDto;
 import com.project.visioncare.models.AppointmentModel;
 import com.project.visioncare.services.AppointmentService;
+import com.project.visioncare.services.UniversityService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,6 +20,9 @@ public class AppointmentController {
     @Autowired
     AppointmentService appointmentService;
 
+    @Autowired
+    UniversityService universityService;
+
     @GetMapping("/appointments")
     public ResponseEntity<List<AppointmentModel>> listAll() {
         return ResponseEntity.ok(appointmentService.listAll());
@@ -31,7 +35,7 @@ public class AppointmentController {
 
     @PostMapping("/appointment")
     public ResponseEntity<UUID> create(@RequestBody @Valid AppointmentRecordDto dto) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(appointmentService.create(dto));
+        return ResponseEntity.status(HttpStatus.CREATED).body(appointmentService.create(dto, universityService));
     }
 
     @PutMapping("/appointment/{id}")

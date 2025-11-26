@@ -1,4 +1,4 @@
-package com.project.visioncare.controllers;
+package com.project.visioncare.controllers.api;
 
 import com.project.visioncare.dtos.CartRecordDto;
 import com.project.visioncare.models.CartModel;

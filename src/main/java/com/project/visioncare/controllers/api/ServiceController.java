@@ -1,8 +1,8 @@
-package com.project.visioncare.controllers;
+package com.project.visioncare.controllers.api;
 
 import com.project.visioncare.dtos.ServiceRecordDto;
 import com.project.visioncare.models.ServiceModel;
-import com.project.visioncare.services.ServiceModelService;
+import com.project.visioncare.services.ServiceService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,7 +17,7 @@ import java.util.UUID;
 public class ServiceController {
 
     @Autowired
-    ServiceModelService service;
+    ServiceService service;
 
     @GetMapping("/services")
     public ResponseEntity<List<ServiceModel>> listAll() {

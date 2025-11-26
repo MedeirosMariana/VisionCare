@@ -4,10 +4,14 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public record ServiceRecordDto(
         @NotBlank String title,
-                  String description,
+        @NotBlank String description,
                   String image,
-        @NotNull  BigDecimal price
+        @NotNull  BigDecimal price,
+        @NotNull  String duration,
+                  String badge,
+                  List<String> features
 ) {}
