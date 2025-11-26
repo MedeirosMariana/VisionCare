@@ -5,6 +5,12 @@
  * @returns {HTMLElement} O card completo do serviço
  */
 function serviceCardComponent(service) {
+
+  // Função de navegação simples.
+  function navigateTo(path) {
+    window.location.href = path;
+  }
+
   // Cria o container principal do card
   const card = document.createElement('div');
   card.className = 'p-8 bg-gradient-card hover:shadow-float transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 cursor-pointer';
@@ -27,7 +33,7 @@ function serviceCardComponent(service) {
 
       <!-- Ícone do serviço -->
       <div class="w-20 h-20 rounded-xl bg-blue-100 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-        ${service.icon}
+        ${service.image}
       </div>
 
       <!-- Título e descrição -->
@@ -38,7 +44,7 @@ function serviceCardComponent(service) {
 
       <!-- Preço e duração -->
       <div class="flex items-center justify-between text-sm">
-        <div class="text-blue-600 font-bold text-lg">${service.price}</div>
+        <div class="text-blue-600 font-bold text-lg">R$ ${service.price}</div>
         <div class="text-gray-600">${service.duration}</div>
       </div>
 
@@ -54,7 +60,7 @@ function serviceCardComponent(service) {
       </div>
 
       <!-- Botão CTA (navega para agendar consulta) -->
-      <button onclick="navigateTo('src/pages/agendarconsulta.html')"
+      <button onclick="navigateTo('agendarconsulta')"
         class="w-full mt-6 px-6 py-3 bg-gradient-to-r from-blue-600 to-green-600 text-white font-medium rounded-lg hover:shadow-lg transition-all duration-200">
         Solicitar Serviço
       </button>
