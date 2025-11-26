@@ -1,10 +1,11 @@
-package com.project.visioncare.services;
+package com.project.visioncare.services.appointment;
 
 import com.project.visioncare.dtos.AppointmentRecordDto;
 import com.project.visioncare.exceptions.NotFoundException;
 import com.project.visioncare.models.AppointmentModel;
 import com.project.visioncare.models.UniversityModel;
 import com.project.visioncare.repositories.AppointmentRepository;
+import com.project.visioncare.services.UniversityService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-public class AppointmentService {
+public class AppointmentService implements IAppointmentService {
 
     @Autowired
     private AppointmentRepository appointmentRepository;

@@ -2,7 +2,7 @@ package com.project.visioncare.controllers.api;
 
 import com.project.visioncare.dtos.AppointmentRecordDto;
 import com.project.visioncare.models.AppointmentModel;
-import com.project.visioncare.services.AppointmentService;
+import com.project.visioncare.services.appointment.AppointmentService;
 import com.project.visioncare.services.UniversityService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

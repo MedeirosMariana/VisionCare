@@ -1,7 +1,7 @@
 package com.project.visioncare.controllers.view;
 
 import com.project.visioncare.dtos.AppointmentRecordDto;
-import com.project.visioncare.services.AppointmentService;
+import com.project.visioncare.services.appointment.AppointmentService;
 import com.project.visioncare.services.UniversityService;
 import com.project.visioncare.services.appointment.AppointmentServiceProxy;
 import org.springframework.beans.factory.annotation.Autowired;
