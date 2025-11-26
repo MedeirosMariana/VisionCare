@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org" th:inline="javascript">
 
 <head>
   <meta charset="UTF-8">
@@ -72,6 +72,166 @@
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
   </style>
+
+  <!-- Importation script Components -->
+  <script th:src="@{/js/components/header.js}" defer></script>
+  <script th:src="@{/js/components/footer.js}" defer></script>
+
+  <script>
+        function showSuccessModal() {
+            document.getElementById('successModal').classList.remove('hidden');
+        }
+
+        function closeSuccessModal() {
+            document.getElementById('successModal').classList.add('hidden');
+        }
+
+        function finalizePurchase() {
+            showSuccessModal();
+            document.getElementById('orderSummary').reset();
+        }
+
+        window.addEventListener("DOMContentLoaded", () => {
+          // Initialize Lucide icons
+          lucide.createIcons();
+
+          const universities = /*[[${universities}]]*/ [];
+          const universitiesElement = document.getElementById("university")
+
+          universities.forEach(university => {
+             const option = document.createElement("option");
+             option.value = university.id;
+             option.textContent = university.description;
+
+             universitiesElement.appendChild(option);
+          });
+
+          // Price calculation variables
+          let subtotal = 299;
+          let universityDiscount = 30;
+          let shippingPrices = {
+            'standard': 15,
+            'express': 30,
+            'premium': 50
+          };
+          let shippingNames = {
+            'standard': 'Entrega Padrão',
+            'express': 'Entrega Expressa',
+            'premium': 'Entrega Premium'
+          };
+          let currentShipping = 'standard';
+          let currentPayment = 'pix';
+
+          function selectShipping(method) {
+            currentShipping = method;
+            document.getElementById('shipping-name').textContent = shippingNames[method];
+            document.getElementById('shipping-price').textContent = `R$ ${shippingPrices[method]},00`;
+            updateTotal();
+          }
+
+          function selectPayment(method) {
+            currentPayment = method;
+
+            // Hide all payment details
+            document.getElementById('pix-details').classList.toggle('hidden', method !== 'pix');
+            document.getElementById('credit-card-details').classList.toggle('hidden', method !== 'credit-card');
+            document.getElementById('debit-card-details').classList.toggle('hidden', method !== 'debit-card');
+            document.getElementById('boleto-details').classList.toggle('hidden', method !== 'boleto');
+
+            updateTotal();
+          }
+
+          function getPaymentDiscount() {
+            switch (currentPayment) {
+              case 'pix':
+                return subtotal * 0.05;
+              case 'debit-card':
+                return subtotal * 0.03;
+              case 'boleto':
+                return subtotal * 0.07;
+              default:
+                return 0;
+            }
+          }
+
+          function updateTotal() {
+            const shippingPrice = shippingPrices[currentShipping];
+            const paymentDiscount = getPaymentDiscount();
+            const total = subtotal + shippingPrice - universityDiscount - paymentDiscount;
+
+            // Update payment discount display
+            const paymentDiscountElement = document.getElementById('payment-discount');
+            if (paymentDiscount > 0) {
+              const discountNames = {
+                'pix': 'PIX',
+                'debit-card': 'Débito',
+                'boleto': 'Boleto'
+              };
+              paymentDiscountElement.innerHTML = `
+                        <span>Desconto ${discountNames[currentPayment]}</span>
+                        <span>-R$ ${paymentDiscount.toFixed(2)}</span>
+                    `;
+              paymentDiscountElement.style.display = 'flex';
+            } else {
+              paymentDiscountElement.style.display = 'none';
+            }
+
+            // Update total
+            document.getElementById('final-total').textContent = `R$ ${total.toFixed(2)}`;
+
+            // Update specific payment totals
+            document.getElementById('pix-total').textContent = `R$ ${(subtotal + shippingPrice - universityDiscount - (subtotal * 0.05)).toFixed(2)}`;
+            document.getElementById('debit-total').textContent = `R$ ${(subtotal + shippingPrice - universityDiscount - (subtotal * 0.03)).toFixed(2)}`;
+            document.getElementById('boleto-total').textContent = `R$ ${(subtotal + shippingPrice - universityDiscount - (subtotal * 0.07)).toFixed(2)}`;
+          }
+
+          function finalizePurchase() {
+            alert('Compra finalizada com sucesso! Você receberá um e-mail com os detalhes do pedido.');
+          }
+
+          // Add click handlers for shipping options
+          document.querySelectorAll('input[name="shipping"]').forEach(radio => {
+            radio.addEventListener('change', function () {
+              selectShipping(this.value);
+            });
+          });
+
+          // Add click handlers for payment options
+          document.querySelectorAll('input[name="payment"]').forEach(radio => {
+            radio.addEventListener('change', function () {
+              selectPayment(this.value);
+            });
+          });
+
+          // Initialize the page
+          updateTotal();
+
+          document.getElementById("header").appendChild(headerElement())
+          document.getElementById("footer").appendChild(footerElement())
+
+
+        document.getElementById('orderSummary').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Verifica se todos os campos obrigatórios foram preenchidos
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const universityId = document.getElementById('university').value;
+            const consultationType = document.getElementById('consultationType').value;
+            const datePreference = document.getElementById('datePreference').value;
+            const timePreference = document.getElementById('timePreference').value;
+
+            if (!firstName || !lastName || !email || !phone || !universityId || !consultationType || !datePreference || !timePreference) {
+                showPopup('Erro', 'Por favor, preencha todos os campos obrigatórios.');
+                return;
+            }
+
+            finalizePurchase()
+        })
+      })
+  </script>
 </head>
 
 <body class="min-h-screen bg-background text-foreground">
@@ -133,9 +293,14 @@
             </div>
 
             <div class="space-y-2">
-              <label for="university" class="text-sm font-medium text-foreground">Universidade (Opcional)</label>
-              <input id="university" type="text" placeholder="Nome da sua universidade"
-                class="w-full px-3 py-2 border border-input bg-background rounded-md text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring">
+               <label for="university" class="text-sm font-medium text-foreground">Universidade</label>
+               <select
+                 id="university"
+                name="universityId"
+                class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+               >
+                <option value="">Selecione sua universidade</option>
+              </select>
               <p class="text-xs text-muted-foreground">Para desconto universitário de 10%</p>
             </div>
           </div>
@@ -425,27 +590,12 @@
       </div>
 
       <!-- Order Summary -->
-      <div class="space-y-6">
+      <div id="orderSummary" class="space-y-6" >
         <div class="p-6 bg-gradient-card border-0 rounded-lg border border-border sticky top-4">
           <h3 class="text-lg font-bold text-foreground mb-4 flex items-center space-x-2">
             <i data-lucide="package" class="w-5 h-5"></i>
             <span>Resumo do Pedido</span>
           </h3>
-
-          <!-- Product -->
-          <div class="flex space-x-4 mb-6">
-            <img src="src/assets/glasses-collection.jpg" alt="Ray-Ban Classic Aviator"
-              class="w-16 h-16 object-cover rounded-lg">
-            <div class="flex-1 space-y-1">
-              <h4 class="font-medium text-sm">Ray-Ban Classic Aviator</h4>
-              <p class="text-xs text-muted-foreground">Óculos de Sol</p>
-              <p class="text-xs text-muted-foreground">Cor: Dourado</p>
-              <div class="flex items-center space-x-2">
-                <span class="font-bold text-primary">R$ 299</span>
-                <span class="text-xs text-muted-foreground line-through">R$ 399</span>
-              </div>
-            </div>
-          </div>
 
           <div class="w-full h-px bg-border my-4"></div>
 
@@ -503,125 +653,22 @@
           </div>
         </div>
       </div>
+
+      <!-- Modal de Sucesso -->
+      <div id="successModal" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center z-50 hidden">
+            <div class="bg-white p-6 rounded-lg max-w-sm w-full">
+              <h3 id="popupTitle" class="text-xl font-semibold text-center">Compra Realizada com Sucesso!</h3>
+              <p id="popupMessage" class="text-center mt-2 text-gray-600">Sua compra foi realizada com sucesso. Um e-mail com os detalhes foi enviado para você.</p>
+            <div class="flex justify-center mt-4">
+                <button onclick="closeSuccessModal()" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Fechar</button>
+            </div>
+          </div>
+      </div>
     </div>
   </div>
 
   <!-- Footer -->
   <div id="footer"></div>
-
-  <!-- Importation script Components -->
-  <script src="../components/elements/header/script.js" defer></script>
-  <script src="../components/elements/footer/script.js" defer></script>
-
-  <script>
-    window.addEventListener("DOMContentLoaded", () => {
-      // Initialize Lucide icons
-      lucide.createIcons();
-
-      // Price calculation variables
-      let subtotal = 299;
-      let universityDiscount = 30;
-      let shippingPrices = {
-        'standard': 15,
-        'express': 30,
-        'premium': 50
-      };
-      let shippingNames = {
-        'standard': 'Entrega Padrão',
-        'express': 'Entrega Expressa',
-        'premium': 'Entrega Premium'
-      };
-      let currentShipping = 'standard';
-      let currentPayment = 'pix';
-
-      function selectShipping(method) {
-        currentShipping = method;
-        document.getElementById('shipping-name').textContent = shippingNames[method];
-        document.getElementById('shipping-price').textContent = `R$ ${shippingPrices[method]},00`;
-        updateTotal();
-      }
-
-      function selectPayment(method) {
-        currentPayment = method;
-
-        // Hide all payment details
-        document.getElementById('pix-details').classList.toggle('hidden', method !== 'pix');
-        document.getElementById('credit-card-details').classList.toggle('hidden', method !== 'credit-card');
-        document.getElementById('debit-card-details').classList.toggle('hidden', method !== 'debit-card');
-        document.getElementById('boleto-details').classList.toggle('hidden', method !== 'boleto');
-
-        updateTotal();
-      }
-
-      function getPaymentDiscount() {
-        switch (currentPayment) {
-          case 'pix':
-            return subtotal * 0.05;
-          case 'debit-card':
-            return subtotal * 0.03;
-          case 'boleto':
-            return subtotal * 0.07;
-          default:
-            return 0;
-        }
-      }
-
-      function updateTotal() {
-        const shippingPrice = shippingPrices[currentShipping];
-        const paymentDiscount = getPaymentDiscount();
-        const total = subtotal + shippingPrice - universityDiscount - paymentDiscount;
-
-        // Update payment discount display
-        const paymentDiscountElement = document.getElementById('payment-discount');
-        if (paymentDiscount > 0) {
-          const discountNames = {
-            'pix': 'PIX',
-            'debit-card': 'Débito',
-            'boleto': 'Boleto'
-          };
-          paymentDiscountElement.innerHTML = `
-                    <span>Desconto ${discountNames[currentPayment]}</span>
-                    <span>-R$ ${paymentDiscount.toFixed(2)}</span>
-                `;
-          paymentDiscountElement.style.display = 'flex';
-        } else {
-          paymentDiscountElement.style.display = 'none';
-        }
-
-        // Update total
-        document.getElementById('final-total').textContent = `R$ ${total.toFixed(2)}`;
-
-        // Update specific payment totals
-        document.getElementById('pix-total').textContent = `R$ ${(subtotal + shippingPrice - universityDiscount - (subtotal * 0.05)).toFixed(2)}`;
-        document.getElementById('debit-total').textContent = `R$ ${(subtotal + shippingPrice - universityDiscount - (subtotal * 0.03)).toFixed(2)}`;
-        document.getElementById('boleto-total').textContent = `R$ ${(subtotal + shippingPrice - universityDiscount - (subtotal * 0.07)).toFixed(2)}`;
-      }
-
-      function finalizePurchase() {
-        alert('Compra finalizada com sucesso! Você receberá um e-mail com os detalhes do pedido.');
-      }
-
-      // Add click handlers for shipping options
-      document.querySelectorAll('input[name="shipping"]').forEach(radio => {
-        radio.addEventListener('change', function () {
-          selectShipping(this.value);
-        });
-      });
-
-      // Add click handlers for payment options
-      document.querySelectorAll('input[name="payment"]').forEach(radio => {
-        radio.addEventListener('change', function () {
-          selectPayment(this.value);
-        });
-      });
-
-      // Initialize the page
-      updateTotal();
-
-      document.getElementById("header").appendChild(headerElement())
-      document.getElementById("footer").appendChild(footerElement())
-    })
-  </script>
 </body>
 
 </html>

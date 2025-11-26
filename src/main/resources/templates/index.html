@@ -1,11 +1,45 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org" th:inline="javascript">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vision Care</title>
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Scripts para importação de Components -->
+  <script th:src="@{/js/components/script.js}" defer></script>
+  <script th:src="@{/js/components/header.js}" defer></script>
+  <script th:src="@{/js/components/footer.js}" defer></script>
+  <script th:src="@{/js/components/serviceCard.js}" defer></script>
+  <script th:src="@{/js/components/productCard.js}" defer></script>
+  <script th:src="@{/js/components/universityCard.js}" defer></script>
+
+  <script>
+        window.addEventListener("DOMContentLoaded", () => {
+          // #region Funções para controle interno.
+          const navigateTo = (path) => window.location.href = path;
+          // #endregion
+
+          const services = /*[[${services}]]*/ [];
+          const products = /*[[${products}]]*/ [];
+          const universities = /*[[${universities}]]*/ [];
+
+          // #region Renderização de components.
+          document.getElementById("header").appendChild(headerElement())
+          document.getElementById("footer").appendChild(footerElement())
+
+          const servicesGrid = document.getElementById("servicesGrid");
+          services.forEach(service => servicesGrid.appendChild(serviceCardComponent(service)));
+
+          const universitiesGrid = document.getElementById("universitiesGrid");
+          universities.forEach(university => universitiesGrid.appendChild(universityCardComponent(university)));
+
+          const productsGrid = document.getElementById("productsGrid");
+          products.slice(0,3).forEach(product => productsGrid.appendChild(productCardComponent(product)));
+          // #endregion
+        });
+    </script>
 </head>
 
 <body class="flex flex-col items-center w-[100%] min-h-screen p-0">
@@ -92,11 +126,12 @@
 
             <!-- CTA Buttons -->
             <div class="flex flex-col sm:flex-row gap-4">
-              <button
-                class="px-8 py-3 bg-gradient-to-r from-blue-600 to-green-600 text-white font-medium rounded-lg cursor-pointer hover:from-blue-700 hover:to-blue-800 transition-all duration-200 shadow-lg"
-                onclick="navigateTo('/agendarconsulta.html')">
-                Agende sua Consulta
-              </button>
+                <button
+                  class="px-6 py-2 bg-gradient-to-r from-blue-600 to-green-600 text-white font-medium rounded-lg hover:opacity-90 transition-opacity shadow-lg"
+                  onclick="navigateTo('/agendarconsulta')"
+                >
+                  Agendar Consulta
+                </button>
 
               <button
                 class="px-8 py-4 border-2 border-gray-300 text-gray-700 font-medium rounded-lg cursor-pointer hover:border-blue-600 hover:text-blue-600 transition-all duration-200"
@@ -198,186 +233,6 @@
 
     <div id="footer"></div>
   </main>
-
-  <!-- Scripts para importação de Components -->
-  <script src="components/script.js" defer></script>
-  <script src="components/elements/header/script.js" defer></script>
-  <script src="components/elements/footer/script.js" defer></script>
-  <script src="components/cards/serviceCard/script.js" defer></script>
-  <script src="components/cards/productCard/script.js" defer></script>
-  <script src="components/cards/universityCard/script.js" defer></script>
-
-  <script>
-    window.addEventListener("DOMContentLoaded", () => {
-      // #region Funções para controle interno.
-      const navigateTo = (path) => window.location.href = path;
-      // #endregion
-
-      // #region Constants para mook de Dados.
-      const services = [
-        {
-          icon: `
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
-            </svg>
-          `,
-          title: "Exames de Vista",
-          description: "Avaliação completa da sua visão com equipamentos modernos e profissionais especializados.",
-          features: ["Consulta gratuita", "Resultado em 30 min", "Prescrição digital"],
-          price: "Grátis",
-          duration: "30 min",
-          badge: "Popular",
-          color: "text-blue-600"
-        },
-        {
-          icon: `
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2a2 2 0 11-4 0 2 2 0 014 0z"></path>
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5a2 2 0 11-4 0 2 2 0 014 0z"></path>
-            </svg>
-          `,
-          title: "Óculos de Grau",
-          description: "Amplo catálogo de armações modernas e lentes de alta qualidade para todos os estilos.",
-          features: ["Mais de 500 modelos", "Lentes antirreflexo", "Garantia de 2 anos"],
-          price: "R$ 199",
-          duration: "1 hora",
-          badge: null,
-          color: "text-green-600"
-        },
-        {
-          icon: `
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-          `,
-          title: "Óculos de Sol",
-          description: "Proteção UV completa com design moderno. Ideais para o dia a dia universitário.",
-          features: ["Proteção UV 400", "Lentes polarizadas", "Armações resistentes"],
-          price: "R$ 149",
-          duration: "45 min",
-          badge: "Novo",
-          color: "text-blue-600"
-        }
-      ];
-
-      const universities = [
-        {
-          name: "Universidade de São Paulo",
-          acronym: "USP",
-          students: "92.000",
-          discount: "30%",
-          location: "São Paulo",
-          rating: 4.9,
-          logo: "🎓",
-          color: "from-blue-500 to-blue-600"
-        },
-        {
-          name: "Universidade Federal do Rio de Janeiro",
-          acronym: "UFRJ",
-          students: "67.000",
-          discount: "25%",
-          location: "Rio de Janeiro",
-          rating: 4.8,
-          logo: "🏛️",
-          color: "from-green-500 to-green-600"
-        },
-        {
-          name: "Universidade Estadual de Campinas",
-          acronym: "UNICAMP",
-          students: "37.000",
-          discount: "30%",
-          location: "Campinas",
-          rating: 4.9,
-          logo: "🔬",
-          color: "from-purple-500 to-purple-600"
-        },
-        {
-          name: "Universidade Federal de Minas Gerais",
-          acronym: "UFMG",
-          students: "49.000",
-          discount: "28%",
-          location: "Belo Horizonte",
-          rating: 4.7,
-          logo: "⚡",
-          color: "from-orange-500 to-orange-600"
-        },
-        {
-          name: "Pontifícia Universidade Católica",
-          acronym: "PUC-SP",
-          students: "34.000",
-          discount: "25%",
-          location: "São Paulo",
-          rating: 4.8,
-          logo: "📚",
-          color: "from-red-500 to-red-600"
-        },
-        {
-          name: "Universidade Federal de São Carlos",
-          acronym: "UFSCar",
-          students: "18.000",
-          discount: "30%",
-          location: "São Carlos",
-          rating: 4.6,
-          logo: "🚀",
-          color: "from-teal-500 to-teal-600"
-        }
-      ];
-
-      const products = [
-        {
-          id: 1,
-          name: "Ray-Ban Classic",
-          category: "Óculos de Sol",
-          price: "R$ 299",
-          originalPrice: "R$ 399",
-          discount: "25% OFF",
-          rating: 4.8,
-          reviews: 124,
-          image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-          features: ["Proteção UV 400", "Lentes polarizadas", "Armação resistente"]
-        },
-        {
-          id: 1,
-          name: "Ray-Ban Classic",
-          category: "Óculos de Sol",
-          price: "R$ 299",
-          originalPrice: "R$ 399",
-          discount: "25% OFF",
-          rating: 4.8,
-          reviews: 124,
-          image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-          features: ["Proteção UV 400", "Lentes polarizadas", "Armação resistente"]
-        },
-        {
-          id: 3,
-          name: "Study Plus",
-          category: "Óculos de Leitura",
-          price: "R$ 129",
-          originalPrice: "R$ 180",
-          discount: "28% OFF",
-          rating: 4.7,
-          reviews: 156,
-          image: "https://images.unsplash.com/photo-1506260408121-e353d10b87c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-          features: ["Proteção digital", "Conforto prolongado", "Design ergonômico"]
-        }
-      ]
-      // #endregion
-
-      // #region Renderização de components.
-      document.getElementById("header").appendChild(headerElement())
-      document.getElementById("footer").appendChild(footerElement())
-
-      const servicesGrid = document.getElementById("servicesGrid");
-      services.forEach(service => servicesGrid.appendChild(serviceCardComponent(service)));
-
-      const universitiesGrid = document.getElementById("universitiesGrid");
-      universities.forEach(university => universitiesGrid.appendChild(universityCardComponent(university)));
-
-      const productsGrid = document.getElementById("productsGrid");
-      products.forEach(product => productsGrid.appendChild(productCardComponent(product)));
-      // #endregion
-    });
-  </script>
 </body>
 
 </html>
