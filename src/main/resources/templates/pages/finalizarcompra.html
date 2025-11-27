@@ -87,8 +87,42 @@
         }
 
         function finalizePurchase() {
+            // Modal ou alerta
             showSuccessModal();
-            document.getElementById('orderSummary').reset();
+
+            // --- 1) LIMPAR TODOS OS CAMPOS DO FORMULÁRIO ---
+            document.getElementById('name').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('phone').value = '';
+            document.getElementById('university').value = '';
+
+            document.getElementById('cep').value = '';
+            document.getElementById('address').value = '';
+            document.getElementById('neighborhood').value = '';
+            document.getElementById('city').value = '';
+            document.getElementById('state').value = '';
+
+            // --- 2) Resetar os métodos de envio ---
+            document.querySelector('input[name="shipping"][value="standard"]').checked = true;
+            currentShipping = 'standard';
+            document.getElementById('shipping-name').textContent = "Entrega Padrão";
+            document.getElementById('shipping-price').textContent = "R$ 15,00";
+
+            // --- 3) Resetar os métodos de pagamento ---
+            document.querySelector('input[name="payment"][value="pix"]').checked = true;
+            currentPayment = 'pix';
+
+            // Exibir somente o PIX ao resetar
+            document.getElementById('pix-details').classList.remove('hidden');
+            document.getElementById('credit-card-details').classList.add('hidden');
+            document.getElementById('debit-card-details').classList.add('hidden');
+            document.getElementById('boleto-details').classList.add('hidden');
+
+            // --- 4) Remover desconto exibido ---
+            document.getElementById('payment-discount').style.display = 'none';
+
+            // --- 5) Recalcular valores totalmente zerados ---
+            updateTotal();
         }
 
         window.addEventListener("DOMContentLoaded", () => {
@@ -106,8 +140,10 @@
              universitiesElement.appendChild(option);
           });
 
+          const product = /*[[${product}]]*/ null;
+
           // Price calculation variables
-          let subtotal = 299;
+          let subtotal = product.value;
           let universityDiscount = 30;
           let shippingPrices = {
             'standard': 15,
@@ -183,10 +219,6 @@
             document.getElementById('pix-total').textContent = `R$ ${(subtotal + shippingPrice - universityDiscount - (subtotal * 0.05)).toFixed(2)}`;
             document.getElementById('debit-total').textContent = `R$ ${(subtotal + shippingPrice - universityDiscount - (subtotal * 0.03)).toFixed(2)}`;
             document.getElementById('boleto-total').textContent = `R$ ${(subtotal + shippingPrice - universityDiscount - (subtotal * 0.07)).toFixed(2)}`;
-          }
-
-          function finalizePurchase() {
-            alert('Compra finalizada com sucesso! Você receberá um e-mail com os detalhes do pedido.');
           }
 
           // Add click handlers for shipping options
@@ -597,22 +629,47 @@
             <span>Resumo do Pedido</span>
           </h3>
 
+          <!-- Product -->
+          <div class="flex space-x-4 mb-6">
+              <img th:src="${product?.image}"
+                   alt="Produto"
+                   class="w-16 h-16 object-cover rounded-lg">
+
+                <div class="flex-1 space-y-1">
+                    <h4 class="font-medium text-sm" th:text="${product?.description}">Ray-Ban Classic Aviator</h4>
+
+                  <div class="flex items-center space-x-2">
+                      <span
+                         class="font-bold text-primary"
+                         th:text="'R$ ' + (${product?.value} ?: 0)"
+                      >
+                        R$ 0
+                      </span>
+                      <span class="text-xs text-muted-foreground line-through"
+                            th:if="${product?.discountValue != null}"
+                            th:text="'R$ ' + ${product.discountValue}">
+                        R$ 0
+                      </span>
+                  </div>
+             </div>
+          </div>
+
           <div class="w-full h-px bg-border my-4"></div>
 
           <!-- Price Breakdown -->
           <div class="space-y-3">
-            <div class="flex justify-between text-sm">
-              <span>Subtotal</span>
-              <span>R$ 299,00</span>
-            </div>
+              <div class="flex justify-between text-sm">
+                  <span>Subtotal</span>
+                  <span th:text="'R$ ' + (${product?.value} ?: 0)">R$ 0,00</span>
+              </div>
 
-            <div class="flex justify-between text-sm">
+              <div class="flex justify-between text-sm">
               <span>Frete (<span id="shipping-name">Entrega Padrão</span>)</span>
               <span id="shipping-price">R$ 15,00</span>
             </div>
 
             <div class="flex justify-between text-sm text-secondary">
-              <span>Desconto Universitário</span>
+              <span>Desconto</span>
               <span>-R$ 30,00</span>
             </div>
 

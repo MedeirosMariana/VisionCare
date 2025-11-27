@@ -6,11 +6,6 @@
  */
 function productCardComponent(product) {
 
-  // Função de navegação simples.
-  function navigateTo(path) {
-    window.location.href = path;
-  }
-
   const productCard = document.createElement("div");
 
   productCard.className =
@@ -83,7 +78,7 @@ function productCardComponent(product) {
         </div>
 
         <button
-          onclick="navigateTo('/finalizarcompra')"
+          onclick="window.location.href = '/finalizarcompra?productId=${product.id}'"
           class="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-4 py-2 rounded-lg"
         >
           Comprar

@@ -15,14 +15,81 @@
 
   <!-- Main Script -->
   <script>
-     window.addEventListener("DOMContentLoaded", () => {
-        document.getElementById("header").appendChild(headerElement());
-        document.getElementById("footer").appendChild(footerElement());
+      window.addEventListener("DOMContentLoaded", async () => {
+          document.getElementById("header").appendChild(headerElement());
+          document.getElementById("footer").appendChild(footerElement());
 
-        const productsGrid = document.getElementById("productsGrid");
-        const products = /*[[${products}]]*/ [];
-        products.forEach((product) => productsGrid.appendChild(productCardComponent(product)));
-     });
+          await loadProductsFromApi();
+          setupFilters();
+      });
+
+      // Buscar produtos na API
+      async function loadProductsFromApi() {
+          try {
+            const response = await fetch("/api/products");
+            allProducts = await response.json();
+
+            renderProducts(allProducts);
+          } catch (error) {
+            console.error("Erro ao buscar produtos:", error);
+          }
+      }
+
+      // Renderizar os produtos no grid
+      function renderProducts(products) {
+        const grid = document.getElementById("productsGrid");
+        const noProducts = document.getElementById("noProducts");
+        const count = document.getElementById("productCount");
+
+        grid.innerHTML = "";
+
+        if (products.length === 0) {
+          noProducts.classList.remove("hidden");
+          count.textContent = "0 produtos";
+          return;
+        }
+
+        noProducts.classList.add("hidden");
+
+        products.forEach((p) => {
+          grid.appendChild(productCardComponent(p));
+        });
+
+        count.textContent = `${products.length} produto${products.length > 1 ? "s" : ""}`;
+      }
+
+      // Lógica dos filtros (search + categoria)
+      function setupFilters() {
+         document.getElementById("searchInput").addEventListener("input", applyFilters);
+         document.getElementById("categorySelect").addEventListener("change", applyFilters);
+      }
+
+      function applyFilters() {
+         const search = document.getElementById("searchInput").value.toLowerCase();
+         const category = document.getElementById("categorySelect").value;
+
+         const categoryMap = {
+           1: "Óculos de Sol",
+           2: "Óculos de Grau",
+           3: "Óculos de Leitura",
+           4: "Óculos Esportivos"
+         };
+
+         const filtered = allProducts.filter((p) => {
+           const matchesSearch =
+             p.description?.toLowerCase().includes(search) ||
+             p.name?.toLowerCase().includes(search);
+
+           const productCategory = categoryMap[p.type] || "Outros";
+
+           const matchesCategory =
+             category === "all" || category === productCategory;
+
+           return matchesSearch && matchesCategory;
+         });
+
+          renderProducts(filtered);
+      }
   </script>
 </head>
 
